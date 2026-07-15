@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Luxe Bakes Registration - Create a free account to order fresh breads, customize wedding cakes, and join loyalty rewards.">
+  <title>Luxe Bakes - Register Account</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ----------------------------------------------------
+       DESIGN SYSTEM & CSS VARIABLES
+       ---------------------------------------------------- */
+    :root {
+      /* Typography */
+      --font-logo: 'Playfair Display', serif;
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --font-title: 'Outfit', sans-serif;
+      
+      /* Standard Transitions */
+      --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      
+      /* Layout Direction Helpers */
+      --dir-sign: 1; /* 1 for LTR, -1 for RTL */
+      
+      /* Light Mode Palette - Royal Plum & Gold */
+      --bg-primary: #FAF7F2;
+      --bg-secondary: #FFFDFB;
+      --bg-card: #FFFFFF;
+      --text-primary: #221617;
+      --text-secondary: #6C595B;
+      --text-muted: #9A8587;
+      --accent-rose: #6B2335; /* Premium Burgundy/Plum */
+      --accent-rose-hover: #531522;
+      --accent-gold: #D4AF37; /* Vintage Champagne Gold */
+      --accent-gold-hover: #C5A02E;
+      --border-color: rgba(107, 35, 53, 0.08);
+      --border-focus: var(--accent-rose);
+      --shadow-sm: 0 4px 6px -1px rgba(107, 35, 53, 0.03);
+      --shadow-md: 0 12px 20px -3px rgba(107, 35, 53, 0.05);
+      --shadow-lg: 0 24px 36px -4px rgba(107, 35, 53, 0.08);
+      
+      scroll-behavior: smooth;
+    }
+
+    [data-theme="dark"] {
+      /* Dark Mode Palette - Dusty Rose & Gold */
+      --bg-primary: #181112;
+      --bg-secondary: #21191B;
+      --bg-card: #281F21;
+      --text-primary: #F7EFEF;
+      --text-secondary: #CDBCBD;
+      --text-muted: #9F8C8D;
+      --accent-rose: #E59AA6;
+      --accent-rose-hover: #ECA8B3;
+      --accent-gold: #ECC772;
+      --accent-gold-hover: #F7D485;
+      --border-color: rgba(247, 239, 239, 0.08);
+      --border-focus: var(--accent-rose);
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 12px 20px -3px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 24px 36px -4px rgba(0, 0, 0, 0.5);
+    }
+
+    [dir="rtl"] {
+      --dir-sign: -1;
+    }
+
+    /* ----------------------------------------------------
+       RESET & BASE STYLES
+       ---------------------------------------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: inline-block;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-primary);
+      /* Subtle radial dot grid pattern */
+      background-image: radial-gradient(var(--border-color) 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ----------------------------------------------------
+       TOP RIGHT ACTION BUTTONS
+       ---------------------------------------------------- */
+    .top-actions {
+      position: absolute;
+      top: 24px;
+      inset-inline-end: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .theme-btn, .rtl-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-primary);
+      box-shadow: var(--shadow-sm);
+      outline: none;
+      transition: var(--transition-smooth);
+    }
+
+    .theme-btn:hover, .rtl-btn:hover {
+      background-color: var(--bg-primary);
+      transform: scale(1.05);
+      border-color: var(--accent-gold);
+    }
+
+    .theme-btn .sun-svg {
+      transition: transform 0.5s ease, opacity 0.3s ease;
+    }
+
+    .theme-btn .moon-svg {
+      position: absolute;
+      transition: transform 0.5s ease, opacity 0.3s ease;
+      transform: translateY(30px) rotate(90deg);
+      opacity: 0;
+    }
+
+    [data-theme="dark"] .theme-btn .sun-svg {
+      transform: translateY(-30px) rotate(-90deg);
+      opacity: 0;
+    }
+
+    [data-theme="dark"] .theme-btn .moon-svg {
+      transform: translateY(0) rotate(0);
+      opacity: 1;
+    }
+
+    .rtl-btn svg {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [dir="rtl"] .rtl-btn svg {
+      transform: rotate(180deg);
+    }
+
+    /* ----------------------------------------------------
+       REGISTRATION CARD CONTAINER
+       ---------------------------------------------------- */
+    .register-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 450px;
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 5;
+    }
+
+    /* Logo Block */
+    .brand-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .logo-svg {
+      width: 38px;
+      height: 38px;
+      filter: drop-shadow(0 4px 6px rgba(212, 175, 55, 0.15));
+    }
+
+    .logo-text {
+      font-family: var(--font-title);
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Form Fields */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-family: var(--font-title);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 44px;
+      padding: 0 16px;
+      padding-inline-end: 44px; /* Space for password eye icon */
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: var(--font-main);
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .form-input:focus {
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    }
+
+    /* Password visibility toggle */
+    .password-toggle-btn {
+      position: absolute;
+      inset-inline-end: 14px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    .password-toggle-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .password-toggle-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Agreement Checkbox Row */
+    .agreement-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .agreement-checkbox {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      accent-color: var(--accent-gold);
+      cursor: pointer;
+    }
+
+    .agreement-link {
+      font-weight: 700;
+      color: var(--accent-gold);
+    }
+
+    .agreement-link:hover {
+      color: var(--accent-rose);
+      text-decoration: underline;
+    }
+
+    /* Buttons */
+    .submit-btn {
+      width: 100%;
+      height: 48px;
+      background-color: var(--accent-gold);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-fast);
+      outline: none;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--accent-rose);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .submit-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Divider Row */
+    .divider-row {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: var(--text-muted);
+      font-family: var(--font-title);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      gap: 16px;
+    }
+
+    .divider-row::before,
+    .divider-row::after {
+      content: '';
+      flex-grow: 1;
+      height: 1px;
+      background-color: var(--border-color);
+    }
+
+    /* Social Login Buttons */
+    .social-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .social-btn {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      outline: none;
+    }
+
+    .social-btn:hover {
+      background-color: var(--bg-card);
+      transform: translateY(-2px);
+      border-color: var(--accent-gold);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .social-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Login Redirect Button */
+    .outline-btn {
+      width: 100%;
+      height: 48px;
+      background-color: transparent;
+      border: 1.5px solid var(--accent-gold);
+      border-radius: 8px;
+      color: var(--accent-gold);
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+      outline: none;
+    }
+
+    .outline-btn:hover {
+      background-color: rgba(212, 175, 55, 0.05);
+      border-color: var(--accent-rose);
+      color: var(--accent-rose);
+    }
+
+    /* Toast Notifications styling */
+    .toast-notif {
+      position: fixed;
+      bottom: 96px;
+      inset-inline-end: 30px;
+      background-color: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent-gold);
+      padding: 14px 24px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+      font-weight: 600;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .toast-notif.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .register-card {
+        padding: 30px 20px;
+      }
+      body {
+        padding: 16px;
+      }
+    }
+
+    /* Floating Action Button (FAB) */
+    .logo-fab {
+      position: fixed;
+      bottom: 96px;
+      inset-inline-end: 30px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: var(--bg-card);
+      border: 2px solid var(--accent-gold);
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+      outline: none;
+      opacity: 0;
+      transform: translateY(20px) scale(0.8);
+      pointer-events: none;
+    }
+
+    .logo-fab.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .logo-fab:hover {
+      transform: translateY(-5px) scale(1.1) rotate(8deg);
+      background-color: var(--bg-primary);
+      border-color: var(--accent-rose);
+    }
+
+    .fab-logo-svg {
+      width: 32px;
+      height: 32px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Right Mode and Direction Toggles -->
+  <div class="top-actions">
+    <!-- Light/Dark Toggle -->
+    <button class="theme-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
+      <svg class="sun-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="moon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+
+    <!-- Layout Direction Toggle -->
+    <button class="rtl-btn" id="rtlToggleBtn" aria-label="Toggle Layout Direction" title="Toggle LTR/RTL Layout">
+      <i class="fa-solid fa-right-left"></i>
+    </button>
+  </div>
+
+  <!-- Main Register Card -->
+  <main class="register-card">
+    
+    <!-- Brand Header -->
+    <a href="index.html" class="brand-header">
+      <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="44" stroke="var(--accent-gold)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6" />
+        <circle cx="50" cy="50" r="40" stroke="var(--accent-gold)" stroke-width="1.5" />
+        <circle cx="50" cy="50" r="37" stroke="var(--accent-gold)" stroke-width="0.8" stroke-dasharray="1 2" opacity="0.8" />
+        <path d="M22 55 C22 35, 30 25, 43 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+        <path d="M78 55 C78 35, 70 25, 57 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+        <path d="M26 42 Q23 38 27 35 Q29 38 26 42" fill="var(--accent-gold)" />
+        <path d="M33 32 Q30 28 34 25 Q36 28 33 32" fill="var(--accent-gold)" />
+        <path d="M74 42 Q77 38 73 35 Q71 38 74 42" fill="var(--accent-gold)" />
+        <path d="M67 32 Q70 28 66 25 Q64 28 67 32" fill="var(--accent-gold)" />
+        <path d="M32 64 C32 60, 35 58, 40 58 H60 C65 58, 68 60, 68 64 V72 H32 Z" fill="var(--accent-rose)" stroke="var(--text-primary)" stroke-width="1.5" />
+        <path d="M38 48 C38 45, 40 43, 44 43 H56 C60 43, 62 45, 62 48 V58 H38 Z" fill="var(--accent-gold)" stroke="var(--text-primary)" stroke-width="1.5" />
+        <path d="M38 48 Q44 51 50 48 Q56 51 62 48" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+        <path d="M32 64 Q41 68 50 64 Q59 68 68 64" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+        <line x1="50" y1="38" x2="50" y2="32" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M50 22 L52 27 L57 28 L53 31 L54 36 L50 33 L46 36 L47 31 L43 28 L48 27 Z" fill="var(--accent-gold)" />
+        <circle cx="31" cy="39" r="1.5" fill="var(--accent-gold)" />
+        <circle cx="69" cy="42" r="1.5" fill="var(--accent-rose)" />
+        <circle cx="50" cy="17" r="1.8" fill="var(--accent-gold)" />
+      </svg>
+      <span class="logo-text">LUXE BAKES</span>
+    </a>
+
+    <!-- Registration Form -->
+    <form id="registerForm" onsubmit="event.preventDefault(); handleRegisterSubmit();" style="display: flex; flex-direction: column; gap: 16px;">
+      
+      <!-- Full Name Field -->
+      <div class="form-group">
+        <label for="fullNameInput" class="form-label">Full Name</label>
+        <div class="input-wrapper">
+          <input type="text" id="fullNameInput" class="form-input" placeholder="Enter your full name" required>
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="emailInput" class="form-label">Email Address</label>
+        <div class="input-wrapper">
+          <input type="email" id="emailInput" class="form-input" placeholder="e.g. secure@example.com" required>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="passwordInput" class="form-label">Password</label>
+        <div class="input-wrapper">
+          <input type="password" id="passwordInput" class="form-input" placeholder="Create a strong password" required>
+          <button type="button" class="password-toggle-btn" id="passwordToggleBtn1" aria-label="Toggle Password Visibility">
+            <svg id="eyeOpenSvg1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <svg id="eyeClosedSvg1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Confirm Password Field -->
+      <div class="form-group">
+        <label for="confirmPasswordInput" class="form-label">Confirm Password</label>
+        <div class="input-wrapper">
+          <input type="password" id="confirmPasswordInput" class="form-input" placeholder="Repeat your password" required>
+          <button type="button" class="password-toggle-btn" id="passwordToggleBtn2" aria-label="Toggle Password Visibility">
+            <svg id="eyeOpenSvg2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <svg id="eyeClosedSvg2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Agreement Row -->
+      <div class="agreement-row">
+        <input type="checkbox" id="agreementCheck" class="agreement-checkbox" required>
+        <label for="agreementCheck">
+          I agree to the <a href="#" class="agreement-link" onclick="event.preventDefault(); showToast('Opening Terms of Service...');">Terms of Service</a> &amp; <a href="#" class="agreement-link" onclick="event.preventDefault(); showToast('Opening Privacy Policy...');">Privacy Policy</a>
+        </label>
+      </div>
+
+      <!-- Register Button -->
+      <button type="submit" class="submit-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        Register Account
+      </button>
+
+    </form>
+
+    <!-- Social Sign Up Divider -->
+    <div class="divider-row">
+      Or Sign Up With
+    </div>
+
+    <!-- Social Buttons -->
+    <div class="social-row">
+      <!-- Google -->
+      <button class="social-btn" onclick="showToast('Signing up with Google...')" aria-label="Sign up with Google">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+        </svg>
+      </button>
+
+      <!-- Facebook -->
+      <button class="social-btn" onclick="showToast('Signing up with Facebook...')" aria-label="Sign up with Facebook">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/>
+        </svg>
+      </button>
+
+      <!-- Apple -->
+      <button class="social-btn" onclick="showToast('Signing up with Apple...')" aria-label="Sign up with Apple">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: var(--text-primary);">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.21.67-2.93 1.49-.62.69-1.16 1.84-1.01 2.96 1.12.09 2.27-.57 2.95-1.39z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Login Redirect Button -->
+    <button class="outline-btn" onclick="window.location.href='login.html'">
+      Already have an account? Log In
+    </button>
+
+  </main>
+
+  <!-- Toast Notification Wrapper -->
+  <div class="toast-notif" id="toastNotif">
+    <span id="toastIcon" style="display: flex; align-items: center; justify-content: center;"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: var(--accent-gold);"><path d="M12 2l2.4 6.4L20.8 10.8L14.4 13.2L12 19.6L9.6 13.2L3.2 10.8L9.6 8.4Z" /></svg></span>
+    <span id="toastMsg">Action completed!</span>
+  </div>
+
+  <!-- ----------------------------------------------------
+       INTERACTIVE JAVASCRIPT
+       ---------------------------------------------------- -->
+  <script>
+    const htmlEl = document.documentElement;
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const rtlToggleBtn = document.getElementById('rtlToggleBtn');
+    const toastNotif = document.getElementById('toastNotif');
+    const toastMsg = document.getElementById('toastMsg');
+    
+    // Password hide/show toggle for field 1
+    const passwordInput1 = document.getElementById('passwordInput');
+    const passwordToggleBtn1 = document.getElementById('passwordToggleBtn1');
+    const eyeOpenSvg1 = document.getElementById('eyeOpenSvg1');
+    const eyeClosedSvg1 = document.getElementById('eyeClosedSvg1');
+
+    passwordToggleBtn1.addEventListener('click', () => {
+      if (passwordInput1.type === 'password') {
+        passwordInput1.type = 'text';
+        eyeOpenSvg1.style.display = 'none';
+        eyeClosedSvg1.style.display = 'block';
+      } else {
+        passwordInput1.type = 'password';
+        eyeOpenSvg1.style.display = 'block';
+        eyeClosedSvg1.style.display = 'none';
+      }
+    });
+
+    // Password hide/show toggle for field 2
+    const passwordInput2 = document.getElementById('confirmPasswordInput');
+    const passwordToggleBtn2 = document.getElementById('passwordToggleBtn2');
+    const eyeOpenSvg2 = document.getElementById('eyeOpenSvg2');
+    const eyeClosedSvg2 = document.getElementById('eyeClosedSvg2');
+
+    passwordToggleBtn2.addEventListener('click', () => {
+      if (passwordInput2.type === 'password') {
+        passwordInput2.type = 'text';
+        eyeOpenSvg2.style.display = 'none';
+        eyeClosedSvg2.style.display = 'block';
+      } else {
+        passwordInput2.type = 'password';
+        eyeOpenSvg2.style.display = 'block';
+        eyeClosedSvg2.style.display = 'none';
+      }
+    });
+
+    // Form submission validation
+    function handleRegisterSubmit() {
+      const pass1 = passwordInput1.value;
+      const pass2 = passwordInput2.value;
+      
+      if (pass1 !== pass2) {
+        showToast("Error: Passwords do not match!");
+        return;
+      }
+      
+      const name = document.getElementById('fullNameInput').value;
+      showToast(`Account created successfully for ${name}!`);
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 1500);
+    }
+    window.handleRegisterSubmit = handleRegisterSubmit;
+
+    /* ----------------------------------------------------
+       THEME CONTROLLER (LIGHT/DARK)
+       ---------------------------------------------------- */
+    function initTheme() {
+      const savedTheme = localStorage.getItem('bakery-theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
+      }
+    }
+
+    function setTheme(theme) {
+      htmlEl.setAttribute('data-theme', theme);
+      localStorage.setItem('bakery-theme', theme);
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = htmlEl.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+      showToast(`Switched theme to ${newTheme.toUpperCase()}`);
+    });
+
+    /* ----------------------------------------------------
+       LAYOUT DIRECTION CONTROLLER (LTR/RTL)
+       ---------------------------------------------------- */
+    function initDirection() {
+      const savedDir = localStorage.getItem('bakery-dir');
+      if (savedDir) {
+        setDirection(savedDir);
+      } else {
+        setDirection('ltr');
+      }
+    }
+
+    function setDirection(dir) {
+      htmlEl.setAttribute('dir', dir);
+      localStorage.setItem('bakery-dir', dir);
+    }
+
+    rtlToggleBtn.addEventListener('click', () => {
+      const currentDir = htmlEl.getAttribute('dir') || 'ltr';
+      const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+      setDirection(newDir);
+      showToast(`Switched layout to ${newDir.toUpperCase()}`);
+    });
+
+    /* ----------------------------------------------------
+       TOAST ACTIONS
+       ---------------------------------------------------- */
+    let toastTimeout;
+    function showToast(message) {
+      toastMsg.innerText = message;
+      toastNotif.classList.add('show');
+      
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toastNotif.classList.remove('show');
+      }, 3000);
+    }
+    window.showToast = showToast;
+
+    // Initializations
+    initTheme();
+    initDirection();
+
+
+    // Logo FAB Scroll-to-Top Behavior
+    const logoFab = document.getElementById('logoFab');
+    if (logoFab) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          logoFab.classList.add('show');
+        } else {
+          logoFab.classList.remove('show');
+        }
+      });
+      logoFab.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  </script>
+
+  <!-- Floating Action Button (Logo FAB) -->
+  <button class="logo-fab" id="logoFab" title="Back to Top" aria-label="Back to Top">
+    <svg class="fab-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer Golden Crest Circles -->
+      <circle cx="50" cy="50" r="44" stroke="var(--accent-gold)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6" />
+      <circle cx="50" cy="50" r="40" stroke="var(--accent-gold)" stroke-width="1.5" />
+      <circle cx="50" cy="50" r="37" stroke="var(--accent-gold)" stroke-width="0.8" stroke-dasharray="1 2" opacity="0.8" />
+      
+      <!-- Crest Wreath / Foliage Leaves -->
+      <path d="M22 55 C22 35, 30 25, 43 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+      <path d="M78 55 C78 35, 70 25, 57 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+      
+      <!-- Tiny Accent Crest Berries / Dots -->
+      <path d="M26 42 Q23 38 27 35 Q29 38 26 42" fill="var(--accent-gold)" />
+      <path d="M33 32 Q30 28 34 25 Q36 28 33 32" fill="var(--accent-gold)" />
+      <path d="M74 42 Q77 38 73 35 Q71 38 74 42" fill="var(--accent-gold)" />
+      <path d="M67 32 Q70 28 66 25 Q64 28 67 32" fill="var(--accent-gold)" />
+      
+      <!-- Central Cake Structure -->
+      <!-- Tier 1 (Base - Rose/Burgundy) -->
+      <path d="M32 64 C32 60, 35 58, 40 58 H60 C65 58, 68 60, 68 64 V72 H32 Z" fill="var(--accent-rose)" stroke="var(--text-primary)" stroke-width="1.5" />
+      <!-- Tier 2 (Top - Champagne Gold) -->
+      <path d="M38 48 C38 45, 40 43, 44 43 H56 C60 43, 62 45, 62 48 V58 H38 Z" fill="var(--accent-gold)" stroke="var(--text-primary)" stroke-width="1.5" />
+      
+      <!-- Wavy Swag/Drape Piping Details -->
+      <path d="M38 48 Q44 51 50 48 Q56 51 62 48" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+      <path d="M32 64 Q41 68 50 64 Q59 68 68 64" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+      
+      <!-- Candle & Spark/Flame -->
+      <line x1="50" y1="38" x2="50" y2="32" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M50 22 L52 27 L57 28 L53 31 L54 36 L50 33 L46 36 L47 31 L43 28 L48 27 Z" fill="var(--accent-gold)" />
+      
+      <!-- Tiny Decorative Star Dots -->
+      <circle cx="31" cy="39" r="1.5" fill="var(--accent-gold)" />
+      <circle cx="69" cy="42" r="1.5" fill="var(--accent-rose)" />
+      <circle cx="50" cy="17" r="1.8" fill="var(--accent-gold)" />
+    </svg>
+  </button>
+
+</body>
+</html>

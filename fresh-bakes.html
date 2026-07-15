@@ -1,0 +1,2305 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Luxe Bakes Fresh Daily Bakes - View our fresh breads, croissants, muffins, donuts, cookies, and morning specials.">
+  <title>Luxe Bakes - Fresh Bakes</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ----------------------------------------------------
+       DESIGN SYSTEM & CSS VARIABLES
+       ---------------------------------------------------- */
+    :root {
+      /* Typography */
+      --font-logo: 'Playfair Display', serif;
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --font-title: 'Outfit', sans-serif;
+      
+      /* Standard Transitions */
+      --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      
+      /* Layout Direction Helpers */
+      --dir-sign: 1; /* 1 for LTR, -1 for RTL */
+      
+      /* Light Mode Palette - Royal Plum & Gold */
+      --bg-primary: #FAF7F2;
+      --bg-secondary: #FFFDFB;
+      --bg-navbar: rgba(250, 247, 242, 0.85);
+      --bg-card: #FFFFFF;
+      --text-primary: #221617;
+      --text-secondary: #6C595B;
+      --text-muted: #9A8587;
+      --accent-rose: #6B2335; /* Premium Burgundy/Plum */
+      --accent-rose-hover: #531522;
+      --accent-gold: #D4AF37; /* Vintage Champagne Gold */
+      --accent-gold-hover: #C5A02E;
+      --border-color: rgba(107, 35, 53, 0.08);
+      --border-focus: var(--accent-rose);
+      --shadow-sm: 0 4px 6px -1px rgba(107, 35, 53, 0.03);
+      --shadow-md: 0 12px 20px -3px rgba(107, 35, 53, 0.05);
+      --shadow-lg: 0 24px 36px -4px rgba(107, 35, 53, 0.08);
+      --glass-blur: blur(16px);
+      --toggle-track: #EFE9E2;
+      
+      scroll-behavior: smooth;
+    }
+
+    [data-theme="dark"] {
+      /* Dark Mode Palette - Dusty Rose & Gold */
+      --bg-primary: #181112;
+      --bg-secondary: #21191B;
+      --bg-navbar: rgba(24, 17, 18, 0.85);
+      --bg-card: #281F21;
+      --text-primary: #F7EFEF;
+      --text-secondary: #CDBCBD;
+      --text-muted: #9F8C8D;
+      --accent-rose: #E59AA6;
+      --accent-rose-hover: #ECA8B3;
+      --accent-gold: #ECC772;
+      --accent-gold-hover: #F7D485;
+      --border-color: rgba(247, 239, 239, 0.08);
+      --border-focus: var(--accent-rose);
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 12px 20px -3px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 24px 36px -4px rgba(0, 0, 0, 0.5);
+      --toggle-track: #2D2123;
+    }
+
+    [dir="rtl"] {
+      --dir-sign: -1;
+    }
+
+    /* ----------------------------------------------------
+       RESET & BASE STYLES
+       ---------------------------------------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: inline-block;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    html {
+      overflow-x: clip;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: clip;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-title);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* ----------------------------------------------------
+       HEADER & NAVBAR
+       ---------------------------------------------------- */
+    header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: var(--bg-navbar);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px; /* Reduced navbar height */
+    }
+
+    /* Left Side: Logo & Brand */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .logo-svg {
+      width: 30px; /* Reduced logo size */
+      height: 30px;
+      flex-shrink: 0;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .logo-container:hover .logo-svg {
+      transform: scale(1.1) rotate(8deg);
+    }
+
+    .logo-text {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    /* Center Section: Navigation Menu (10 items) */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 2px; /* Reduced gap */
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 8px; /* Reduced padding */
+      font-family: var(--font-title);
+      font-size: 0.65rem; /* Reduced font size */
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-primary);
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--accent-rose);
+      background-color: rgba(107, 35, 53, 0.06);
+    }
+
+    .nav-link.active {
+      color: var(--accent-rose);
+      background-color: rgba(107, 35, 53, 0.04);
+    }
+
+    /* Underline animation on hover/active */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 16px; /* Reduced underline width */
+      height: 3px;
+      background-color: var(--accent-gold);
+      border-radius: 2px;
+      transform: translateX(-50%) scaleX(0);
+      transition: var(--transition-fast);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    /* Chevron Indicator Icon */
+    .chevron-icon {
+      width: 10px; /* Reduced chevron size */
+      height: 10px;
+      stroke-width: 2.5;
+      transition: transform 0.25s ease;
+    }
+
+    .nav-item:hover .chevron-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Categories Dropdown Menu */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      inset-inline-start: 50%;
+      transform: translateX(calc(-50% * var(--dir-sign))) translateY(10px);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      box-shadow: var(--shadow-lg);
+      padding: 6px;
+      width: 140px;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 110;
+      transition: opacity 0.3s var(--transition-smooth), transform 0.3s var(--transition-smooth);
+    }
+
+    .nav-item:hover .dropdown-menu {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(calc(-50% * var(--dir-sign))) translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-family: var(--font-title);
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: var(--transition-fast);
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(220, 161, 90, 0.08);
+      color: var(--accent-gold);
+    }
+
+    /* Right Side Panel: Toggles & Button */
+    .right-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Dark Mode Toggle Button */
+    .theme-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      color: var(--text-primary);
+      overflow: hidden;
+      outline: none;
+    }
+
+    .theme-btn:hover {
+      background-color: var(--border-color);
+      transform: scale(1.05);
+    }
+
+    .theme-btn .sun-svg {
+      transition: transform 0.5s ease, opacity 0.3s ease;
+    }
+
+    .theme-btn .moon-svg {
+      position: absolute;
+      transition: transform 0.5s ease, opacity 0.3s ease;
+      transform: translateY(30px) rotate(90deg);
+      opacity: 0;
+    }
+
+    [data-theme="dark"] .theme-btn .sun-svg {
+      transform: translateY(-30px) rotate(-90deg);
+      opacity: 0;
+    }
+
+    [data-theme="dark"] .theme-btn .moon-svg {
+      transform: translateY(0) rotate(0);
+      opacity: 1;
+    }
+
+    /* RTL Layout Toggle Button */
+    .rtl-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      color: var(--text-primary);
+      overflow: hidden;
+      outline: none;
+      transition: var(--transition-smooth);
+    }
+
+    .rtl-btn:hover {
+      background-color: var(--border-color);
+      transform: scale(1.05);
+    }
+
+    .rtl-btn svg {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [dir="rtl"] .rtl-btn svg,
+    .rtl-btn.rtl svg {
+      transform: rotate(180deg);
+    }
+
+    /* Luxury Login Button - Styled to match reference design */
+    .login-btn {
+      background: var(--accent-gold);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-family: var(--font-title);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .login-btn:hover {
+      background-color: var(--accent-rose);
+      transform: translateY(-2px);
+    }
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+    .login-arrow {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2.5;
+      transition: transform 0.3s ease;
+    }
+
+    .login-btn:hover .login-arrow {
+      transform: translateX(calc(4px * var(--dir-sign)));
+    }
+
+    /* Hamburger Toggle Button */
+    .mobile-menu-trigger {
+      display: none;
+      background: transparent;
+      border: none;
+      width: 44px;
+      height: 44px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1001;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .hamburger-line {
+      width: 20px;
+      height: 2px;
+      background-color: var(--text-primary);
+      border-radius: 2px;
+      transition: var(--transition-smooth);
+    }
+
+    .mobile-menu-trigger.open .hamburger-line:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobile-menu-trigger.open .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-trigger.open .hamburger-line:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ----------------------------------------------------
+       MOBILE SLIDE-OUT DRAWER
+       ---------------------------------------------------- */
+    .mobile-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .mobile-drawer-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 320px;
+      max-width: 85vw;
+      background-color: var(--bg-card);
+      z-index: 1000;
+      box-shadow: var(--shadow-lg);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      transition: var(--transition-smooth);
+      
+      inset-inline-start: 0;
+      transform: translateX(calc(-100% * var(--dir-sign)));
+    }
+
+    .mobile-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+    }
+
+    .drawer-close-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+
+    .drawer-close-btn:hover {
+      background-color: var(--border-color);
+    }
+
+    .drawer-close-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2.5;
+    }
+
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .drawer-nav-link {
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border-radius: 10px;
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .drawer-nav-link:hover,
+    .drawer-nav-link.active {
+      color: var(--accent-rose);
+      background-color: rgba(107, 35, 53, 0.06);
+    }
+
+    .drawer-category-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-inline-start: 16px;
+      border-inline-start: 1px dashed var(--border-color);
+      padding-inline-start: 12px;
+      display: none;
+    }
+
+    .drawer-category-group.open {
+      display: flex;
+    }
+
+    .drawer-sub-link {
+      padding: 8px 12px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      border-radius: 6px;
+      transition: var(--transition-fast);
+    }
+
+    .drawer-sub-link:hover {
+      color: var(--accent-gold);
+      background-color: rgba(220, 161, 90, 0.08);
+    }
+
+    .drawer-footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .drawer-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    /* Toast Notifications styling */
+    .toast-notif {
+      position: fixed;
+      bottom: 96px;
+      inset-inline-end: 30px;
+      background-color: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent-gold);
+      padding: 14px 24px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+      font-weight: 600;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .toast-notif.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ----------------------------------------------------
+       FRESH BAKES UNIQUE STYLES
+       ---------------------------------------------------- */
+    .bakes-hero {
+      position: relative;
+      padding: 100px 0;
+      background: linear-gradient(rgba(34, 22, 23, 0.7), rgba(34, 22, 23, 0.75)), url('images/bake_croissants.png') no-repeat center center;
+      background-size: cover;
+      color: #FFFFFF;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    [data-theme="dark"] .bakes-hero {
+      background: linear-gradient(rgba(24, 17, 18, 0.8), rgba(24, 17, 18, 0.85)), url('images/bake_croissants.png') no-repeat center center;
+      background-size: cover;
+    }
+
+    .bakes-hero h1 {
+      font-size: 3rem;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .bakes-hero p {
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.7;
+    }
+
+    /* Section 2: Split Panel Duos */
+    .bakes-panels-container {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+
+    .bakes-panel-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .bake-panel-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      transition: var(--transition-smooth);
+    }
+
+    .bake-panel-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-gold);
+    }
+
+    .bake-panel-img {
+      width: 40%;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .bake-panel-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .bake-panel-card:hover .bake-panel-img img {
+      transform: scale(1.06);
+    }
+
+    .bake-panel-body {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+
+    .bake-panel-body h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .bake-panel-body p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .bake-spec-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px dashed var(--border-color);
+      padding-top: 12px;
+      margin-bottom: 12px;
+    }
+
+    .bake-spec-list li {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .bake-spec-list span.label {
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .bake-order-btn {
+      color: var(--accent-rose);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition-fast);
+    }
+
+    .bake-order-btn:hover {
+      color: var(--accent-gold);
+    }
+
+    .bake-order-btn svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.25s ease;
+    }
+
+    .bake-panel-card:hover .bake-order-btn svg {
+      transform: translateX(3px);
+    }
+
+    /* Section 3: Oven Showcase */
+    .oven-showcase {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 50px;
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      margin-bottom: 80px;
+    }
+
+    .oven-text {
+      flex: 1.2;
+    }
+
+    .oven-text h2 {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+    }
+
+    .oven-text p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .oven-img {
+      flex: 0.8;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .oven-img img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Section 4: Daily Clock */
+    .clock-section {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .clock-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+    }
+
+    .clock-timeline {
+      display: flex;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .clock-timeline::before {
+      content: '';
+      position: absolute;
+      top: 50px;
+      left: 8%;
+      right: 8%;
+      height: 1px;
+      border-top: 2px dashed var(--border-color);
+    }
+
+    .clock-node {
+      width: 22%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .clock-time {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: var(--bg-card);
+      border: 3px double var(--accent-gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: var(--accent-rose);
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-smooth);
+    }
+
+    .clock-node:hover .clock-time {
+      transform: scale(1.1);
+      border-color: var(--accent-rose);
+      color: var(--accent-gold);
+    }
+
+    .clock-time span.hour {
+      font-size: 1.2rem;
+    }
+
+    .clock-time span.period {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+    }
+
+    .clock-node h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .clock-node p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Section 5: Stats Tracker */
+    .stats-section {
+      margin-bottom: 80px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .stat-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent-gold);
+      margin-bottom: 8px;
+    }
+
+    .stat-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Section 6: Hot Oven Notification Banner */
+    .hot-oven-banner {
+      background-color: var(--accent-rose);
+      color: #FFFFFF;
+      border-radius: 20px;
+      padding: 30px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 80px;
+    }
+
+    .hot-oven-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hot-oven-icon {
+      font-size: 2.2rem;
+      animation: iconPulse 1.5s infinite;
+    }
+
+    @keyframes iconPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .hot-oven-text h3 {
+      color: #FFFFFF;
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+    }
+
+    .hot-oven-text p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
+    }
+
+    .hot-oven-banner button {
+      background-color: var(--accent-gold);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .hot-oven-banner button:hover {
+      background-color: #FFFFFF;
+      color: var(--accent-rose);
+    }
+
+    /* Section 7: Pre-Order CTA */
+    .preorder-cta {
+      background: linear-gradient(rgba(34, 22, 23, 0.8), rgba(34, 22, 23, 0.85)), url('images/bake_bread.png') no-repeat center center;
+      background-size: cover;
+      color: #FFFFFF;
+      border-radius: 24px;
+      padding: 70px 40px;
+      text-align: center;
+      margin-bottom: 80px;
+      border: 1px solid var(--border-color);
+    }
+
+    [data-theme="dark"] .preorder-cta {
+      background: linear-gradient(rgba(24, 17, 18, 0.85), rgba(24, 17, 18, 0.9)), url('images/bake_bread.png') no-repeat center center;
+      background-size: cover;
+    }
+
+    .preorder-cta h2 {
+      color: #FFFFFF;
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+    }
+
+    .preorder-cta p {
+      max-width: 600px;
+      margin: 0 auto 24px;
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+    }
+
+    /* ----------------------------------------------------
+       FOOTER SECTION
+       ---------------------------------------------------- */
+    footer {
+      background-color: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 60px 0 30px;
+      margin-top: auto; /* Pushes footer to bottom if page content is short */
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-col h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: capitalize;
+      letter-spacing: 0.02em;
+      position: relative;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 32px;
+      height: 3px;
+      background-color: var(--accent-gold);
+      border-radius: 2px;
+    }
+
+    [dir="rtl"] .footer-col h3::after {
+      left: auto;
+      right: 0;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-primary);
+    }
+
+    .footer-logo .logo-svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .footer-logo-text {
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .footer-social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: var(--transition-fast);
+    }
+
+    .footer-social-btn:hover {
+      background-color: var(--accent-rose);
+      border-color: var(--accent-rose);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    .footer-social-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links-item a {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      transition: var(--transition-fast);
+      display: inline-block;
+    }
+
+    .footer-links-item a:hover {
+      color: var(--accent-gold);
+      transform: translateX(calc(4px * var(--dir-sign)));
+    }
+
+    .footer-divider {
+      border: 0;
+      border-top: 1px dashed var(--border-color);
+      margin-bottom: 24px;
+    }
+
+    /* Newsletter form styles */
+    .footer-sub-form {
+      display: flex;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .footer-sub-input {
+      flex-grow: 1;
+      height: 44px;
+      padding: 0 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .footer-sub-input:focus {
+      border-color: var(--accent-rose);
+    }
+
+    .footer-sub-btn {
+      background-color: var(--accent-gold);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .footer-sub-btn:hover {
+      background-color: var(--accent-rose);
+      transform: translateY(-2px);
+    }
+
+    .footer-sub-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-bottom-links a:hover {
+      color: var(--accent-rose);
+    }
+
+    /* Responsive adjustments for footer and layouts */
+    /* Tablet Landscape / Laptop Small (1024px and below) */
+    @media (max-width: 1024px) {
+      .nav-menu {
+        display: none;
+      }
+      .mobile-menu-trigger {
+        display: flex;
+      }
+      .navbar {
+        height: 72px;
+      }
+      header .theme-btn,
+      header .rtl-btn,
+      header .login-btn {
+        display: none;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+      .bakes-panel-row {
+        grid-template-columns: 1fr;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .oven-showcase {
+        flex-direction: column;
+        padding: 30px;
+      }
+    }
+
+    /* Tablet Portrait (768px and below) */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+      .clock-timeline {
+        flex-direction: column;
+        gap: 35px;
+      }
+      .clock-timeline::before {
+        display: none;
+      }
+      .clock-node {
+        width: 100%;
+      }
+      .hot-oven-banner {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+      .hot-oven-content {
+        flex-direction: column;
+      }
+    }
+
+    /* Mobile Large (480px and below) */
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 12px;
+      }
+      .logo-text {
+        font-size: 1.0rem;
+      }
+      .logo-svg {
+        width: 26px;
+        height: 26px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .footer-col h3 {
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+      .footer-bottom-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .bakes-hero h1 {
+        font-size: 2rem;
+      }
+      .bake-panel-card {
+        flex-direction: column;
+      }
+      .bake-panel-img {
+        width: 100%;
+        height: 200px;
+      }
+      .hot-oven-banner {
+        padding: 24px 16px;
+      }
+    }
+
+    /* Mobile Small (320px and below) */
+    @media (max-width: 320px) {
+      .container {
+        padding: 0 8px;
+      }
+      .logo-text {
+        font-size: 1.1rem;
+      }
+      .logo-svg {
+        width: 30px;
+        height: 30px;
+      }
+      .footer-sub-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .footer-sub-btn {
+        width: 100%;
+        height: 40px;
+      }
+      .mobile-drawer {
+        width: 100%;
+        max-width: 100vw;
+      }
+    }
+
+    /* Floating Action Button (FAB) */
+    .logo-fab {
+      position: fixed;
+      bottom: 96px;
+      inset-inline-end: 30px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: var(--bg-card);
+      border: 2px solid var(--accent-gold);
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+      outline: none;
+      opacity: 0;
+      transform: translateY(20px) scale(0.8);
+      pointer-events: none;
+    }
+
+    .logo-fab.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .logo-fab:hover {
+      transform: translateY(-5px) scale(1.1) rotate(8deg);
+      background-color: var(--bg-primary);
+      border-color: var(--accent-rose);
+    }
+
+    .fab-logo-svg {
+      width: 32px;
+      height: 32px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ----------------------------------------------------
+       HEADER & NAVIGATION
+       ---------------------------------------------------- -->
+  <header>
+    <div class="container navbar">
+      
+      <!-- Left side: Creative Cake Logo -->
+      <a href="index.html" class="logo-container" id="logoLink">
+        <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer Golden Crest Circles -->
+          <circle cx="50" cy="50" r="44" stroke="var(--accent-gold)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6" />
+          <circle cx="50" cy="50" r="40" stroke="var(--accent-gold)" stroke-width="1.5" />
+          <circle cx="50" cy="50" r="37" stroke="var(--accent-gold)" stroke-width="0.8" stroke-dasharray="1 2" opacity="0.8" />
+          
+          <!-- Crest Wreath / Foliage Leaves -->
+          <path d="M22 55 C22 35, 30 25, 43 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+          <path d="M78 55 C78 35, 70 25, 57 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+          <!-- Wreath Leaf Details -->
+          <path d="M26 42 Q23 38 27 35 Q29 38 26 42" fill="var(--accent-gold)" />
+          <path d="M33 32 Q30 28 34 25 Q36 28 33 32" fill="var(--accent-gold)" />
+          <path d="M74 42 Q77 38 73 35 Q71 38 74 42" fill="var(--accent-gold)" />
+          <path d="M67 32 Q70 28 66 25 Q64 28 67 32" fill="var(--accent-gold)" />
+
+          <!-- Two-Tier Luxury Cake Silhouette -->
+          <!-- Base Tier -->
+          <path d="M32 64 C32 60, 35 58, 40 58 H60 C65 58, 68 60, 68 64 V72 H32 Z" fill="var(--accent-rose)" stroke="var(--text-primary)" stroke-width="1.5" />
+          <!-- Top Tier -->
+          <path d="M38 48 C38 45, 40 43, 44 43 H56 C60 43, 62 45, 62 48 V58 H38 Z" fill="var(--accent-gold)" stroke="var(--text-primary)" stroke-width="1.5" />
+          
+          <!-- Cake Decorative Frosting / Drips -->
+          <!-- Top Tier Swags -->
+          <path d="M38 48 Q44 51 50 48 Q56 51 62 48" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+          <!-- Base Tier Swags -->
+          <path d="M32 64 Q41 68 50 64 Q59 68 68 64" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+          
+          <!-- Lit Candle / Stem on Top -->
+          <line x1="50" y1="38" x2="50" y2="32" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" />
+          
+          <!-- Star / Sparkle Flame on Top -->
+          <path d="M50 22 L52 27 L57 28 L53 31 L54 36 L50 33 L46 36 L47 31 L43 28 L48 27 Z" fill="var(--accent-gold)" />
+          
+          <!-- Magic Sparkle Dots -->
+          <circle cx="31" cy="39" r="1.5" fill="var(--accent-gold)" />
+          <circle cx="69" cy="42" r="1.5" fill="var(--accent-rose)" />
+          <circle cx="50" cy="17" r="1.8" fill="var(--accent-gold)" />
+        </svg>
+        <span class="logo-text">LUXE BAKES</span>
+      </a>
+
+      <!-- Center: Menu Links (10 items) -->
+      <nav>
+        <ul class="nav-menu" id="desktopNavMenu">
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="homeLink">
+              Home
+              <svg class="chevron-icon" viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="dropdown-menu">
+              <a href="Home 1.html" class="dropdown-item"><strong>Home 1</strong></a>
+              <a href="Home 2.html" class="dropdown-item"><strong>Home 2</strong></a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a href="categories.html" class="nav-link" id="categoriesLink">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a href="fresh-bakes.html" class="nav-link active">Fresh Bakes</a>
+          </li>
+          <li class="nav-item">
+            <a href="desserts.html" class="nav-link">Desserts</a>
+          </li>
+          <li class="nav-item">
+            <a href="cake-gallery.html" class="nav-link">Cake Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a href="special-occasions.html" class="nav-link">Special Occasions</a>
+          </li>
+          <li class="nav-item">
+            <a href="offers.html" class="nav-link">Offers</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact Us</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right Side: Dark Mode, RTL, and Login -->
+      <div class="right-actions">
+        <!-- Dark Mode Toggle Button -->
+        <button class="theme-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
+          <svg class="sun-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- LTR/RTL Toggle Button -->
+        <button class="rtl-btn" id="rtlToggleBtn" aria-label="Toggle Layout Direction" title="Toggle Left-to-Right / Right-to-Left">
+          <i class="fa-solid fa-right-left"></i>
+        </button>
+
+        <!-- Login Button -->
+        <a href="login.html" class="login-btn" id="loginBtn" title="Account Login">
+          <span>Login</span>
+          <svg class="login-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <!-- Hamburger Icon (collapsed navigation) -->
+        <button class="mobile-menu-trigger" id="mobileMenuTrigger" aria-label="Toggle Mobile Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ----------------------------------------------------
+       MOBILE DRAWER SLIDEOUT & OVERLAY
+       ---------------------------------------------------- -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="drawer-header">
+      <div class="logo-container" style="cursor: default;">
+        <span class="logo-text" style="font-size: 1.45rem;">Luxe Bakes</span>
+      </div>
+      <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <nav class="drawer-nav" id="drawerNavLinks">
+      <div>
+        <a href="#" class="drawer-nav-link" id="drawerHomeToggle">
+          Home
+          <svg class="chevron-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
+        <div class="drawer-category-group" id="drawerHomeGroup">
+          <a href="Home 1.html" class="drawer-sub-link">Home 1</a>
+          <a href="Home 2.html" class="drawer-sub-link">Home 2</a>
+        </div>
+      </div>
+      <a href="about.html" class="drawer-nav-link">About Us</a>
+      <a href="categories.html" class="drawer-nav-link" id="drawerCategoriesLink">Categories</a>
+      <a href="fresh-bakes.html" class="drawer-nav-link active">Fresh Bakes</a>
+      <a href="desserts.html" class="drawer-nav-link">Desserts</a>
+      <a href="cake-gallery.html" class="drawer-nav-link">Cake Gallery</a>
+      <a href="special-occasions.html" class="drawer-nav-link">Special Occasions</a>
+      <a href="offers.html" class="drawer-nav-link">Offers</a>
+      <a href="contact.html" class="drawer-nav-link">Contact Us</a>
+    </nav>
+    
+    <div class="drawer-footer">
+      <div class="drawer-actions">
+        <!-- Mobile Dark Mode Toggle Button -->
+        <button class="theme-btn" id="mobileThemeToggleBtn" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
+          <svg class="sun-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile LTR/RTL Toggle Button -->
+        <button class="rtl-btn" id="mobileRtlToggleBtn" aria-label="Toggle Layout Direction" title="Toggle Left-to-Right / Right-to-Left">
+          <i class="fa-solid fa-right-left"></i>
+        </button>
+      </div>
+      <a href="login.html" class="login-btn" style="width: 100%; justify-content: center;" id="mobileLoginBtn">
+        <span>Login</span>
+        <svg class="login-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ====================================================
+       SECTION 1: HERO BANNER
+       ==================================================== -->
+  <section class="bakes-hero">
+    <div class="container">
+      <h1>Fresh Morning Bakes</h1>
+      <p>Baked daily at 3:00 AM using traditional stone-hearth deck ovens. Organic, local grains and freshly rolled butter for unmatched taste.</p>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 2: ALTERNATING PANEL DUOS (8 CATEGORIES)
+       ==================================================== -->
+  <section class="container bakes-panels-container">
+    
+    <!-- Row 1: Fresh Bread & Croissants -->
+    <div class="bakes-panel-row">
+      <!-- 1. Fresh Bread -->
+      <div class="bake-panel-card">
+        <div class="bake-panel-img">
+          <img src="images/bake_bread.png" alt="Freshly baked sourdough bread at Luxe Bakes">
+        </div>
+        <div class="bake-panel-body">
+          <div>
+            <h3>Fresh Bread</h3>
+            <p>Our sourdough is naturally fermented for 36 hours to yield a crisp crust and a soft, tangy center crumbs.</p>
+          </div>
+          <ul class="bake-spec-list">
+            <li><span class="label">Bake Time:</span> Daily, 6:30 AM</li>
+            <li><span class="label">Ingredients:</span> Wild Yeast, Organic Flour</li>
+          </ul>
+          <a href="#" class="bake-order-btn" onclick="showToast('Bread Order Selected')">
+            <span>Pre-Order</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. Croissants -->
+      <div class="bake-panel-card">
+        <div class="bake-panel-img">
+          <img src="images/bake_croissants.png" alt="Golden flaky croissants at Luxe Bakes">
+        </div>
+        <div class="bake-panel-body">
+          <div>
+            <h3>Croissants</h3>
+            <p>Hand-rolled layers of artisanal Normandy butter and pastry dough, baked to golden, flaky perfection.</p>
+          </div>
+          <ul class="bake-spec-list">
+            <li><span class="label">Bake Time:</span> Daily, 7:00 AM</li>
+            <li><span class="label">Ingredients:</span> Normandy Butter, Milk</li>
+          </ul>
+          <a href="#" class="bake-order-btn" onclick="showToast('Croissant Order Selected')">
+            <span>Pre-Order</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Muffins & Donuts -->
+    <div class="bakes-panel-row">
+      <!-- 3. Muffins -->
+      <div class="bake-panel-card">
+        <div class="bake-panel-img">
+          <img src="images/bake_muffins.png" alt="Freshly baked blueberry crumble muffins">
+        </div>
+        <div class="bake-panel-body">
+          <div>
+            <h3>Muffins</h3>
+            <p>Moist, soft-crumbed muffins packed with organic mountain blueberries and loaded with sweet brown sugar crumble.</p>
+          </div>
+          <ul class="bake-spec-list">
+            <li><span class="label">Bake Time:</span> Daily, 7:30 AM</li>
+            <li><span class="label">Ingredients:</span> Fresh Blueberries, Cane Sugar</li>
+          </ul>
+          <a href="#" class="bake-order-btn" onclick="showToast('Muffin Order Selected')">
+            <span>Pre-Order</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. Donuts -->
+      <div class="bake-panel-card">
+        <div class="bake-panel-img">
+          <img src="images/bake_donuts.png" alt="Premium glazed donuts at Luxe Bakes">
+        </div>
+        <div class="bake-panel-body">
+          <div>
+            <h3>Donuts</h3>
+            <p>Soft yeast-raised donuts dipped in artisanal chocolate ganache and signature cardamom glazes.</p>
+          </div>
+          <ul class="bake-spec-list">
+            <li><span class="label">Bake Time:</span> Daily, 8:00 AM</li>
+            <li><span class="label">Ingredients:</span> Yeast Dough, Dark Chocolate</li>
+          </ul>
+          <a href="#" class="bake-order-btn" onclick="showToast('Donut Order Selected')">
+            <span>Pre-Order</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Cookies & Brownies -->
+    <div class="bakes-panel-row">
+      <!-- 5. Cookies -->
+      <div class="bake-panel-card">
+        <div class="bake-panel-img">
+          <img src="images/bake_cookies.png" alt="Soft chocolate chip cookies at Luxe Bakes">
+        </div>
+        <div class="bake-panel-body">
+          <div>
+            <h3>Cookies</h3>
+            <p>Crispy edges, chewy centers, loaded with Belgian dark chocolate chunks and topped with sea salt flakes.</p>
+          </div>
+          <ul class="bake-spec-list">
+            <li><span class="label">Bake Time:</span> Daily, 9:00 AM</li>
+            <li><span class="label">Ingredients:</span> Brown Butter, Sea Salt</li>
+          </ul>
+          <a href="#" class="bake-order-btn" onclick="showToast('Cookie Order Selected')">
+            <span>Pre-Order</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 6. Brownies -->
+      <div class="bake-panel-card">
+        <div class="bake-panel-img">
+          <img src="images/bake_brownies.png" alt="Fudgy double chocolate brownies">
+        </div>
+        <div class="bake-panel-body">
+          <div>
+            <h3>Brownies</h3>
+            <p>Decadent double-chocolate brownies with a fudgy center and a glossy crinkle top crust.</p>
+          </div>
+          <ul class="bake-spec-list">
+            <li><span class="label">Bake Time:</span> Daily, 9:30 AM</li>
+            <li><span class="label">Ingredients:</span> Premium Cocoa, Roasted Pecans</li>
+          </ul>
+          <a href="#" class="bake-order-btn" onclick="showToast('Brownie Order Selected')">
+            <span>Pre-Order</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 4: Cupcakes & Seasonal Specials -->
+    <div class="bakes-panel-row">
+      <!-- 7. Cupcakes -->
+      <div class="bake-panel-card">
+        <div class="bake-panel-img">
+          <img src="images/bake_cupcakes.png" alt="Gourmet buttercream cupcakes at Luxe Bakes">
+        </div>
+        <div class="bake-panel-body">
+          <div>
+            <h3>Cupcakes</h3>
+            <p>Light cupcakes topped with whipped mascarpone frosting, edible sparkles, and fresh berries.</p>
+          </div>
+          <ul class="bake-spec-list">
+            <li><span class="label">Bake Time:</span> Daily, 10:00 AM</li>
+            <li><span class="label">Ingredients:</span> Mascarpone, Vanilla Extract</li>
+          </ul>
+          <a href="#" class="bake-order-btn" onclick="showToast('Cupcake Order Selected')">
+            <span>Pre-Order</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 8. Seasonal Specials -->
+      <div class="bake-panel-card">
+        <div class="bake-panel-img">
+          <img src="images/bake_seasonal.png" alt="Autumn specials and tarts at Luxe Bakes">
+        </div>
+        <div class="bake-panel-body">
+          <div>
+            <h3>Seasonal Specials</h3>
+            <p>Our weekly creative bakes showcasing seasonal fruits, spices, and limited-edition pastries.</p>
+          </div>
+          <ul class="bake-spec-list">
+            <li><span class="label">Bake Time:</span> Varies Weekly</li>
+            <li><span class="label">Ingredients:</span> Fresh Seasonal Fruits</li>
+          </ul>
+          <a href="#" class="bake-order-btn" onclick="showToast('Seasonal Specials Order Selected')">
+            <span>Pre-Order</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ====================================================
+       SECTION 3: HERITAGE DECK OVEN DETAILS
+       ==================================================== -->
+  <section class="container">
+    <div class="oven-showcase">
+      <div class="oven-text">
+        <h2>Traditional Italian Steam-Injection Ovens</h2>
+        <p>The secret behind our perfect sourdough crust lies in our Italian stone-deck ovens. By injecting clean steam at the initial phase of baking, we prevent the outer crust from setting too quickly, allowing the dough to expand fully and caramelize beautifully.</p>
+        <p>This creates a crisp shell, a glossy look, and lock in the interior moisture, which is why our breads stay fresh and delicious for days.</p>
+      </div>
+      <div class="oven-img">
+        <img src="images/bakery_interior.png" alt="Italian Stone Deck Ovens at Luxe Bakes">
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 4: TIMELINE PROCESS
+       ==================================================== -->
+  <section class="container clock-section">
+    <h2>The Baker's Morning Schedule</h2>
+    <div class="clock-timeline">
+      <!-- Step 1 -->
+      <div class="clock-node">
+        <div class="clock-time">
+          <span class="hour">3:00</span>
+          <span class="period">am</span>
+        </div>
+        <h4>Sourdough Shaping</h4>
+        <p>We shape and pre-score cold-fermented loaves.</p>
+      </div>
+      <!-- Step 2 -->
+      <div class="clock-node">
+        <div class="clock-time">
+          <span class="hour">4:30</span>
+          <span class="period">am</span>
+        </div>
+        <h4>Croissant Rolling</h4>
+        <p>Laminating puff pastry dough with fresh butter.</p>
+      </div>
+      <!-- Step 3 -->
+      <div class="clock-node">
+        <div class="clock-time">
+          <span class="hour">6:00</span>
+          <span class="period">am</span>
+        </div>
+        <h4>Deck Baking</h4>
+        <p>Loading loaves into our hot stone-deck ovens.</p>
+      </div>
+      <!-- Step 4 -->
+      <div class="clock-node">
+        <div class="clock-time">
+          <span class="hour">7:00</span>
+          <span class="period">am</span>
+        </div>
+        <h4>Doors Open</h4>
+        <p>Loaves are lined up, steaming and ready for you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 5: LIVE MOCK STATS TRACKER
+       ==================================================== -->
+  <section class="container stats-section">
+    <div class="stats-grid">
+      <!-- Stat 1 -->
+      <div class="stat-card">
+        <div class="stat-number">120</div>
+        <h4>Sourdough Loaves Baked</h4>
+      </div>
+      <!-- Stat 2 -->
+      <div class="stat-card">
+        <div class="stat-number">250</div>
+        <h4>Croissants Hand Rolled</h4>
+      </div>
+      <!-- Stat 3 -->
+      <div class="stat-card">
+        <div class="stat-number">180</div>
+        <h4>Donuts Glazed Today</h4>
+      </div>
+      <!-- Stat 4 -->
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <h4>Organic Flours Used</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 6: HOT OUT OF OVEN ALERTS
+       ==================================================== -->
+  <section class="container">
+    <div class="hot-oven-banner">
+      <div class="hot-oven-content">
+        <span class="hot-oven-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="var(--accent-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 15c4.5-4.5 13.5-4.5 18 0l-1.5 1.5c-3.5-3.5-11.5-3.5-15 0L3 15z" fill="var(--accent-gold)" fill-opacity="0.1"></path>
+          <path d="M5.5 11c3.5-3.5 9.5-3.5 13 0"></path>
+          <line x1="8" y1="10" x2="10" y2="14" stroke="var(--accent-rose)" stroke-width="1.8"></line>
+          <line x1="12" y1="9" x2="14" y2="13" stroke="var(--accent-rose)" stroke-width="1.8"></line>
+          <line x1="16" y1="10" x2="18" y2="14" stroke="var(--accent-rose)" stroke-width="1.8"></line>
+        </svg></span>
+        <div class="hot-oven-text">
+          <h3>Baking Alert: Sourdough Baguettes</h3>
+          <p>Our second batch of artisanal baguettes is coming out of the stone oven in exactly 12 minutes!</p>
+        </div>
+      </div>
+      <button onclick="showToast('Notified! We will hold a baguette for you. ')">Notify Me</button>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 7: PRE-ORDER CTA
+       ==================================================== -->
+  <section class="container">
+    <div class="preorder-cta">
+      <h2>Plan Your Morning Event</h2>
+      <p>Whether it is an early office meeting or a weekend family breakfast, you can pre-order boxes of croissants, muffins, and sourdough loaves. Order by 5:00 PM for next-day early pickup.</p>
+      <button class="login-btn" style="margin: 0 auto; background: var(--accent-gold);" onclick="showToast('Opening pre-order basket calculator... ')">Enquire Event Catering</button>
+    </div>
+  </section>
+
+  <!-- ----------------------------------------------------
+       FOOTER
+       ---------------------------------------------------- -->
+  <footer>
+    <div class="container footer-grid">
+      <!-- Col 1: Brand & Socials -->
+      <div class="footer-col">
+        <a href="index.html" class="footer-logo">
+          <!-- Same Crested Cake Logo as Navbar -->
+          <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer Golden Crest Circles -->
+            <circle cx="50" cy="50" r="44" stroke="var(--accent-gold)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6" />
+            <circle cx="50" cy="50" r="40" stroke="var(--accent-gold)" stroke-width="1.5" />
+            <circle cx="50" cy="50" r="37" stroke="var(--accent-gold)" stroke-width="0.8" stroke-dasharray="1 2" opacity="0.8" />
+            
+            <!-- Crest Wreath / Foliage Leaves -->
+            <path d="M22 55 C22 35, 30 25, 43 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+            <path d="M78 55 C78 35, 70 25, 57 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+            <!-- Wreath Leaf Details -->
+            <path d="M26 42 Q23 38 27 35 Q29 38 26 42" fill="var(--accent-gold)" />
+            <path d="M33 32 Q30 28 34 25 Q36 28 33 32" fill="var(--accent-gold)" />
+            <path d="M74 42 Q77 38 73 35 Q71 38 74 42" fill="var(--accent-gold)" />
+            <path d="M67 32 Q70 28 66 25 Q64 28 67 32" fill="var(--accent-gold)" />
+
+            <!-- Two-Tier Luxury Cake Silhouette -->
+            <!-- Base Tier -->
+            <path d="M32 64 C32 60, 35 58, 40 58 H60 C65 58, 68 60, 68 64 V72 H32 Z" fill="var(--accent-rose)" stroke="var(--text-primary)" stroke-width="1.5" />
+            <!-- Top Tier -->
+            <path d="M38 48 C38 45, 40 43, 44 43 H56 C60 43, 62 45, 62 48 V58 H38 Z" fill="var(--accent-gold)" stroke="var(--text-primary)" stroke-width="1.5" />
+            
+            <!-- Cake Decorative Frosting / Drips -->
+            <!-- Top Tier Swags -->
+            <path d="M38 48 Q44 51 50 48 Q56 51 62 48" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+            <!-- Base Tier Swags -->
+            <path d="M32 64 Q41 68 50 64 Q59 68 68 64" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+            
+            <!-- Lit Candle / Stem on Top -->
+            <line x1="50" y1="38" x2="50" y2="32" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" />
+            
+            <!-- Star / Sparkle Flame on Top -->
+            <path d="M50 22 L52 27 L57 28 L53 31 L54 36 L50 33 L46 36 L47 31 L43 28 L48 27 Z" fill="var(--accent-gold)" />
+            
+            <!-- Magic Sparkle Dots -->
+            <circle cx="31" cy="39" r="1.5" fill="var(--accent-gold)" />
+            <circle cx="69" cy="42" r="1.5" fill="var(--accent-rose)" />
+            <circle cx="50" cy="17" r="1.8" fill="var(--accent-gold)" />
+          </svg>
+          <span class="footer-logo-text">Luxe Bakes</span>
+        </a>
+        <p class="footer-desc">
+          Licensed, registered, and organic artisanal bakery &amp; confectionery. Fresh daily deck-oven bakes, custom celebration cakes, and pastry masterclasses. Available for events.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="#" class="footer-social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href="#" class="footer-social-btn" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22c-.6 0-1.2-.3-1.5-.8L5.3 19c-.8-1.5-1.3-3.2-1.3-5 0-5 4-9 9-9s9 4 9 9-4 9-9 9c-1.3 0-2.5-.3-3.7-.8l-1.3.8z"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Bakery Services -->
+      <div class="footer-col">
+        <h3>Bakery Services</h3>
+        <ul class="footer-links">
+          <li class="footer-links-item"><a href="#">Custom Cake Design</a></li>
+          <li class="footer-links-item"><a href="#">Wedding Consultations</a></li>
+          <li class="footer-links-item"><a href="#">Catering &amp; Events</a></li>
+          <li class="footer-links-item"><a href="#">Baking Masterclasses</a></li>
+          <li class="footer-links-item"><a href="#">Gift Cards &amp; Hampers</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Resources & Info -->
+      <div class="footer-col">
+        <h3>Resources &amp; Info</h3>
+        <ul class="footer-links">
+          <li class="footer-links-item"><a href="#">About Our Bakers</a></li>
+          <li class="footer-links-item"><a href="#">Allergen &amp; Ingredients</a></li>
+          <li class="footer-links-item"><a href="#">Delivery Information</a></li>
+          <li class="footer-links-item"><a href="#">Baking Blog &amp; Recipes</a></li>
+          <li class="footer-links-item"><a href="#">Customer Reviews</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Sweet News & Offers -->
+      <div class="footer-col">
+        <h3>Sweet News &amp; Offers</h3>
+        <p class="footer-desc">
+          Subscribe for baking tips, fresh product drops &amp; special birthday cake deals.
+        </p>
+        <form class="footer-sub-form" onsubmit="event.preventDefault(); showToast('Subscribed to newsletter! ');">
+          <input type="email" class="footer-sub-input" placeholder="Enter your email" required aria-label="Email address">
+          <button type="submit" class="footer-sub-btn" aria-label="Subscribe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <hr class="footer-divider">
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Luxe Bakes &amp; Cake Shop. All rights reserved. Baking love daily.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookies Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Wrapper -->
+  <div class="toast-notif" id="toastNotif">
+    <span id="toastIcon">âœ¨</span>
+    <span id="toastMsg">Action completed!</span>
+  </div>
+
+  <!-- ----------------------------------------------------
+       INTERACTIVE JAVASCRIPT
+       ---------------------------------------------------- -->
+  <script>
+    // Cache DOM Elements
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const mobileThemeToggleBtn = document.getElementById('mobileThemeToggleBtn');
+    const rtlToggleBtn = document.getElementById('rtlToggleBtn');
+    const mobileRtlToggleBtn = document.getElementById('mobileRtlToggleBtn');
+    const loginBtn = document.getElementById('loginBtn');
+    const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+    
+    const mobileMenuTrigger = document.getElementById('mobileMenuTrigger');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileDrawerOverlay = document.getElementById('mobileDrawerOverlay');
+    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+    const drawerNavLinks = document.getElementById('drawerNavLinks');
+    
+    const logoLink = document.getElementById('logoLink');
+    const categoriesLink = document.getElementById('categoriesLink');
+    const toastNotif = document.getElementById('toastNotif');
+    const toastMsg = document.getElementById('toastMsg');
+    
+    const desktopLinks = document.querySelectorAll('#desktopNavMenu .nav-link');
+    const drawerLinks = document.querySelectorAll('#drawerNavLinks .drawer-nav-link');
+
+    /* ----------------------------------------------------
+       THEME CONTROLLER (LIGHT/DARK)
+       ---------------------------------------------------- */
+    function initTheme() {
+      const savedTheme = localStorage.getItem('bakery-theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
+      }
+    }
+
+    function setTheme(theme) {
+      htmlEl.setAttribute('data-theme', theme);
+      localStorage.setItem('bakery-theme', theme);
+    }
+
+    function toggleThemeAction() {
+      const currentTheme = htmlEl.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+      showToast(`Switched to ${newTheme.toUpperCase()} theme `);
+    }
+    themeToggleBtn.addEventListener('click', toggleThemeAction);
+    mobileThemeToggleBtn.addEventListener('click', toggleThemeAction);
+
+    /* ----------------------------------------------------
+       LAYOUT DIRECTION CONTROLLER (LTR/RTL)
+       ---------------------------------------------------- */
+    function initDirection() {
+      const savedDir = localStorage.getItem('bakery-dir');
+      if (savedDir) {
+        setDirection(savedDir);
+      } else {
+        setDirection('ltr');
+      }
+    }
+
+    function setDirection(dir) {
+      htmlEl.setAttribute('dir', dir);
+      localStorage.setItem('bakery-dir', dir);
+      if (dir === 'rtl') {
+        rtlToggleBtn.classList.add('rtl');
+        mobileRtlToggleBtn.classList.add('rtl');
+      } else {
+        rtlToggleBtn.classList.remove('rtl');
+        mobileRtlToggleBtn.classList.remove('rtl');
+      }
+    }
+
+    function toggleDirectionAction() {
+      const currentDir = htmlEl.getAttribute('dir') || 'ltr';
+      const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+      setDirection(newDir);
+      showToast(`Switched layout to ${newDir.toUpperCase()} `);
+    }
+    rtlToggleBtn.addEventListener('click', toggleDirectionAction);
+    mobileRtlToggleBtn.addEventListener('click', toggleDirectionAction);
+
+    /* ----------------------------------------------------
+       MOBILE DRAWER CONTROLLER
+       ---------------------------------------------------- */
+    function openDrawer() {
+      mobileDrawer.classList.add('open');
+      mobileDrawerOverlay.classList.add('open');
+      mobileMenuTrigger.classList.add('open');
+      bodyEl.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      mobileDrawer.classList.remove('open');
+      mobileDrawerOverlay.classList.remove('open');
+      mobileMenuTrigger.classList.remove('open');
+      bodyEl.style.overflow = '';
+    }
+
+    mobileMenuTrigger.addEventListener('click', () => {
+      if (mobileDrawer.classList.contains('open')) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+
+    drawerCloseBtn.addEventListener('click', closeDrawer);
+    mobileDrawerOverlay.addEventListener('click', closeDrawer);
+
+
+    // Toggle home group inside mobile drawer
+    const drawerHomeToggle = document.getElementById('drawerHomeToggle');
+    const drawerHomeGroup = document.getElementById('drawerHomeGroup');
+    drawerHomeToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      drawerHomeGroup.classList.toggle('open');
+      const arrowIcon = drawerHomeToggle.querySelector('.chevron-icon');
+      if (drawerHomeGroup.classList.contains('open')) {
+        arrowIcon.style.transform = 'rotate(180deg)';
+      } else {
+        arrowIcon.style.transform = '';
+      }
+    });
+
+    // Close drawer when a mobile link is clicked
+    document.querySelectorAll('.drawer-nav-link, .drawer-sub-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (link.id === 'drawerHomeToggle') return;
+        closeDrawer();
+      });
+    });
+
+    // Highlight active link when clicked (mock routing)
+    desktopLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.classList.contains('dropdown-toggle')) return;
+        desktopLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        showToast(`Navigated to: ${this.innerText}`);
+      });
+    });
+
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.id === 'drawerCategoriesToggle') return;
+        drawerLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        showToast(`Navigated to: ${this.innerText}`);
+      });
+    });
+
+    /* ----------------------------------------------------
+       LOGIN TRIGGERS
+       ---------------------------------------------------- */
+    
+
+    
+    
+
+    /* ----------------------------------------------------
+       TOAST ACTIONS
+       ---------------------------------------------------- */
+    let toastTimeout;
+    function showToast(message) {
+      toastMsg.innerText = message;
+      toastNotif.classList.add('show');
+      
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toastNotif.classList.remove('show');
+      }, 3000);
+    }
+    window.showToast = showToast;
+
+    // Initializations
+    initTheme();
+    initDirection();
+
+
+    // Logo FAB Scroll-to-Top Behavior
+    const logoFab = document.getElementById('logoFab');
+    if (logoFab) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          logoFab.classList.add('show');
+        } else {
+          logoFab.classList.remove('show');
+        }
+      });
+      logoFab.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  </script>
+
+  <!-- Floating Action Button (Logo FAB) -->
+  <button class="logo-fab" id="logoFab" title="Back to Top" aria-label="Back to Top">
+    <svg class="fab-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer Golden Crest Circles -->
+      <circle cx="50" cy="50" r="44" stroke="var(--accent-gold)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6" />
+      <circle cx="50" cy="50" r="40" stroke="var(--accent-gold)" stroke-width="1.5" />
+      <circle cx="50" cy="50" r="37" stroke="var(--accent-gold)" stroke-width="0.8" stroke-dasharray="1 2" opacity="0.8" />
+      
+      <!-- Crest Wreath / Foliage Leaves -->
+      <path d="M22 55 C22 35, 30 25, 43 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+      <path d="M78 55 C78 35, 70 25, 57 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+      
+      <!-- Tiny Accent Crest Berries / Dots -->
+      <path d="M26 42 Q23 38 27 35 Q29 38 26 42" fill="var(--accent-gold)" />
+      <path d="M33 32 Q30 28 34 25 Q36 28 33 32" fill="var(--accent-gold)" />
+      <path d="M74 42 Q77 38 73 35 Q71 38 74 42" fill="var(--accent-gold)" />
+      <path d="M67 32 Q70 28 66 25 Q64 28 67 32" fill="var(--accent-gold)" />
+      
+      <!-- Central Cake Structure -->
+      <!-- Tier 1 (Base - Rose/Burgundy) -->
+      <path d="M32 64 C32 60, 35 58, 40 58 H60 C65 58, 68 60, 68 64 V72 H32 Z" fill="var(--accent-rose)" stroke="var(--text-primary)" stroke-width="1.5" />
+      <!-- Tier 2 (Top - Champagne Gold) -->
+      <path d="M38 48 C38 45, 40 43, 44 43 H56 C60 43, 62 45, 62 48 V58 H38 Z" fill="var(--accent-gold)" stroke="var(--text-primary)" stroke-width="1.5" />
+      
+      <!-- Wavy Swag/Drape Piping Details -->
+      <path d="M38 48 Q44 51 50 48 Q56 51 62 48" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+      <path d="M32 64 Q41 68 50 64 Q59 68 68 64" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+      
+      <!-- Candle & Spark/Flame -->
+      <line x1="50" y1="38" x2="50" y2="32" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M50 22 L52 27 L57 28 L53 31 L54 36 L50 33 L46 36 L47 31 L43 28 L48 27 Z" fill="var(--accent-gold)" />
+      
+      <!-- Tiny Decorative Star Dots -->
+      <circle cx="31" cy="39" r="1.5" fill="var(--accent-gold)" />
+      <circle cx="69" cy="42" r="1.5" fill="var(--accent-rose)" />
+      <circle cx="50" cy="17" r="1.8" fill="var(--accent-gold)" />
+    </svg>
+  </button>
+
+</body>
+</html>
+

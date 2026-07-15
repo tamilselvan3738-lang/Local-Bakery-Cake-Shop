@@ -1,0 +1,2504 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Luxe Bakes Special Occasions - Custom cakes and dessert setups for birthdays, weddings, anniversaries, baby showers, graduations, and corporate events.">
+  <title>Luxe Bakes - Special Occasions</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ----------------------------------------------------
+       DESIGN SYSTEM & CSS VARIABLES
+       ---------------------------------------------------- */
+    :root {
+      /* Typography */
+      --font-logo: 'Playfair Display', serif;
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --font-title: 'Outfit', sans-serif;
+      
+      /* Standard Transitions */
+      --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      
+      /* Layout Direction Helpers */
+      --dir-sign: 1; /* 1 for LTR, -1 for RTL */
+      
+      /* Light Mode Palette - Royal Plum & Gold */
+      --bg-primary: #FAF7F2;
+      --bg-secondary: #FFFDFB;
+      --bg-navbar: rgba(250, 247, 242, 0.85);
+      --bg-card: #FFFFFF;
+      --text-primary: #221617;
+      --text-secondary: #6C595B;
+      --text-muted: #9A8587;
+      --accent-rose: #6B2335; /* Premium Burgundy/Plum */
+      --accent-rose-hover: #531522;
+      --accent-gold: #D4AF37; /* Vintage Champagne Gold */
+      --accent-gold-hover: #C5A02E;
+      --border-color: rgba(107, 35, 53, 0.08);
+      --border-focus: var(--accent-rose);
+      --shadow-sm: 0 4px 6px -1px rgba(107, 35, 53, 0.03);
+      --shadow-md: 0 12px 20px -3px rgba(107, 35, 53, 0.05);
+      --shadow-lg: 0 24px 36px -4px rgba(107, 35, 53, 0.08);
+      --glass-blur: blur(16px);
+      --toggle-track: #EFE9E2;
+      
+      scroll-behavior: smooth;
+    }
+
+    [data-theme="dark"] {
+      /* Dark Mode Palette - Dusty Rose & Gold */
+      --bg-primary: #181112;
+      --bg-secondary: #21191B;
+      --bg-navbar: rgba(24, 17, 18, 0.85);
+      --bg-card: #281F21;
+      --text-primary: #F7EFEF;
+      --text-secondary: #CDBCBD;
+      --text-muted: #9F8C8D;
+      --accent-rose: #E59AA6;
+      --accent-rose-hover: #ECA8B3;
+      --accent-gold: #ECC772;
+      --accent-gold-hover: #F7D485;
+      --border-color: rgba(247, 239, 239, 0.08);
+      --border-focus: var(--accent-rose);
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 12px 20px -3px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 24px 36px -4px rgba(0, 0, 0, 0.5);
+      --toggle-track: #2D2123;
+    }
+
+    [dir="rtl"] {
+      --dir-sign: -1;
+    }
+
+    /* ----------------------------------------------------
+       RESET & BASE STYLES
+       ---------------------------------------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: inline-block;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    html {
+      overflow-x: clip;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: clip;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-title);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* ----------------------------------------------------
+       HEADER & NAVBAR
+       ---------------------------------------------------- */
+    header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: var(--bg-navbar);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px; /* Reduced navbar height */
+    }
+
+    /* Left Side: Logo & Brand */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .logo-svg {
+      width: 30px; /* Reduced logo size */
+      height: 30px;
+      flex-shrink: 0;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .logo-container:hover .logo-svg {
+      transform: scale(1.1) rotate(8deg);
+    }
+
+    .logo-text {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    /* Center Section: Navigation Menu (10 items) */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 2px; /* Reduced gap */
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 8px; /* Reduced padding */
+      font-family: var(--font-title);
+      font-size: 0.65rem; /* Reduced font size */
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-primary);
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--accent-rose);
+      background-color: rgba(107, 35, 53, 0.06);
+    }
+
+    .nav-link.active {
+      color: var(--accent-rose);
+      background-color: rgba(107, 35, 53, 0.04);
+    }
+
+    /* Underline animation on hover/active */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 16px; /* Reduced underline width */
+      height: 3px;
+      background-color: var(--accent-gold);
+      border-radius: 2px;
+      transform: translateX(-50%) scaleX(0);
+      transition: var(--transition-fast);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    /* Chevron Indicator Icon */
+    .chevron-icon {
+      width: 10px; /* Reduced chevron size */
+      height: 10px;
+      stroke-width: 2.5;
+      transition: transform 0.25s ease;
+    }
+
+    .nav-item:hover .chevron-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Categories Dropdown Menu */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      inset-inline-start: 50%;
+      transform: translateX(calc(-50% * var(--dir-sign))) translateY(10px);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      box-shadow: var(--shadow-lg);
+      padding: 6px;
+      width: 140px;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 110;
+      transition: opacity 0.3s var(--transition-smooth), transform 0.3s var(--transition-smooth);
+    }
+
+    .nav-item:hover .dropdown-menu {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(calc(-50% * var(--dir-sign))) translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-family: var(--font-title);
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: var(--transition-fast);
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(220, 161, 90, 0.08);
+      color: var(--accent-gold);
+    }
+
+    /* Right Side Panel: Toggles & Button */
+    .right-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Dark Mode Toggle Button */
+    .theme-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      color: var(--text-primary);
+      overflow: hidden;
+      outline: none;
+    }
+
+    .theme-btn:hover {
+      background-color: var(--border-color);
+      transform: scale(1.05);
+    }
+
+    .theme-btn .sun-svg {
+      transition: transform 0.5s ease, opacity 0.3s ease;
+    }
+
+    .theme-btn .moon-svg {
+      position: absolute;
+      transition: transform 0.5s ease, opacity 0.3s ease;
+      transform: translateY(30px) rotate(90deg);
+      opacity: 0;
+    }
+
+    [data-theme="dark"] .theme-btn .sun-svg {
+      transform: translateY(-30px) rotate(-90deg);
+      opacity: 0;
+    }
+
+    [data-theme="dark"] .theme-btn .moon-svg {
+      transform: translateY(0) rotate(0);
+      opacity: 1;
+    }
+
+    /* RTL Layout Toggle Button */
+    .rtl-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      color: var(--text-primary);
+      overflow: hidden;
+      outline: none;
+      transition: var(--transition-smooth);
+    }
+
+    .rtl-btn:hover {
+      background-color: var(--border-color);
+      transform: scale(1.05);
+    }
+
+    .rtl-btn svg {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [dir="rtl"] .rtl-btn svg,
+    .rtl-btn.rtl svg {
+      transform: rotate(180deg);
+    }
+
+    /* Luxury Login Button - Styled to match reference design */
+    .login-btn {
+      background: var(--accent-gold);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-family: var(--font-title);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .login-btn:hover {
+      background-color: var(--accent-rose);
+      transform: translateY(-2px);
+    }
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+    .login-arrow {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2.5;
+      transition: transform 0.3s ease;
+    }
+
+    .login-btn:hover .login-arrow {
+      transform: translateX(calc(4px * var(--dir-sign)));
+    }
+
+    /* Hamburger Toggle Button */
+    .mobile-menu-trigger {
+      display: none;
+      background: transparent;
+      border: none;
+      width: 44px;
+      height: 44px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1001;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .hamburger-line {
+      width: 20px;
+      height: 2px;
+      background-color: var(--text-primary);
+      border-radius: 2px;
+      transition: var(--transition-smooth);
+    }
+
+    .mobile-menu-trigger.open .hamburger-line:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobile-menu-trigger.open .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-trigger.open .hamburger-line:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ----------------------------------------------------
+       MOBILE SLIDE-OUT DRAWER
+       ---------------------------------------------------- */
+    .mobile-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .mobile-drawer-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 320px;
+      max-width: 85vw;
+      background-color: var(--bg-card);
+      z-index: 1000;
+      box-shadow: var(--shadow-lg);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      transition: var(--transition-smooth);
+      
+      inset-inline-start: 0;
+      transform: translateX(calc(-100% * var(--dir-sign)));
+    }
+
+    .mobile-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+    }
+
+    .drawer-close-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+
+    .drawer-close-btn:hover {
+      background-color: var(--border-color);
+    }
+
+    .drawer-close-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2.5;
+    }
+
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .drawer-nav-link {
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border-radius: 10px;
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .drawer-nav-link:hover,
+    .drawer-nav-link.active {
+      color: var(--accent-rose);
+      background-color: rgba(107, 35, 53, 0.06);
+    }
+
+    .drawer-category-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-inline-start: 16px;
+      border-inline-start: 1px dashed var(--border-color);
+      padding-inline-start: 12px;
+      display: none;
+    }
+
+    .drawer-category-group.open {
+      display: flex;
+    }
+
+    .drawer-sub-link {
+      padding: 8px 12px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      border-radius: 6px;
+      transition: var(--transition-fast);
+    }
+
+    .drawer-sub-link:hover {
+      color: var(--accent-gold);
+      background-color: rgba(220, 161, 90, 0.08);
+    }
+
+    .drawer-footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .drawer-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    /* Toast Notifications styling */
+    .toast-notif {
+      position: fixed;
+      bottom: 96px;
+      inset-inline-end: 30px;
+      background-color: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent-gold);
+      padding: 14px 24px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+      font-weight: 600;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .toast-notif.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ----------------------------------------------------
+       SPECIAL OCCASIONS PAGE UNIQUE STYLES
+       ---------------------------------------------------- */
+    .occ-hero {
+      position: relative;
+      padding: 100px 0;
+      background: linear-gradient(rgba(107, 35, 53, 0.75), rgba(107, 35, 53, 0.8)), url('images/contact_hero.png') no-repeat center center;
+      background-size: cover;
+      color: #FFFFFF;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    [data-theme="dark"] .occ-hero {
+      background: linear-gradient(rgba(24, 17, 18, 0.85), rgba(24, 17, 18, 0.9)), url('images/contact_hero.png') no-repeat center center;
+      background-size: cover;
+    }
+
+    .occ-hero h1 {
+      font-size: 3rem;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .occ-hero p {
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.7;
+    }
+
+    /* Section 2: Tabbed Coordinator Deck */
+    .coordinator-section {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 40px;
+      margin-bottom: 80px;
+      align-items: start;
+    }
+
+    .occ-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: var(--bg-card);
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .occ-tab-btn {
+      background: transparent;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 12px;
+      text-align: left;
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition-fast);
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    [dir="rtl"] .occ-tab-btn {
+      text-align: right;
+    }
+
+    .occ-tab-btn:hover,
+    .occ-tab-btn.active {
+      background-color: rgba(107, 35, 53, 0.06);
+      color: var(--accent-rose);
+    }
+
+    .occ-tab-btn.active {
+      border-inline-start: 4px solid var(--accent-gold);
+    }
+
+    .occ-tab-btn svg {
+      width: 16px;
+      height: 16px;
+      opacity: 0;
+      transition: var(--transition-fast);
+    }
+
+    .occ-tab-btn.active svg {
+      opacity: 1;
+      color: var(--accent-gold);
+    }
+
+    .occ-content-deck {
+      background-color: var(--bg-card);
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .occ-panel {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .occ-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .occ-panel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 480px;
+    }
+
+    .occ-panel-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .occ-panel-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .occ-panel-info {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .occ-panel-info h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .occ-panel-info p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .occ-inclusions {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .occ-inclusions li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .occ-inclusions li svg {
+      color: var(--accent-gold);
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* Section 3: Cake Tasting Experience */
+    .tasting-showcase {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 60px;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      margin-bottom: 80px;
+    }
+
+    .tasting-text {
+      flex: 1.2;
+    }
+
+    .tasting-text h2 {
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .tasting-text p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .tasting-img {
+      flex: 0.8;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .tasting-img img {
+      width: 100%;
+      display: block;
+      transition: var(--transition-smooth);
+    }
+
+    .tasting-img:hover img {
+      transform: scale(1.03);
+    }
+
+    /* Section 4: Booking Timeline */
+    .timeline-section {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .timeline-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+    }
+
+    .timeline-row {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .timeline-row::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: 50px;
+      right: 50px;
+      height: 2px;
+      background: var(--border-color);
+      z-index: 1;
+    }
+
+    .timeline-step {
+      flex: 1;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 0 10px;
+    }
+
+    .timeline-icon-box {
+      width: 60px;
+      height: 60px;
+      background-color: var(--bg-card);
+      border: 2px solid var(--accent-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-gold);
+      font-size: 1.3rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .timeline-step h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .timeline-step p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      max-width: 180px;
+    }
+
+    /* Section 5: Delivery & Logistics */
+    .logistics-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+
+    .logistics-text h2 {
+      font-size: 2.2rem;
+      margin-bottom: 18px;
+    }
+
+    .logistics-text p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .logistics-img {
+      position: relative;
+    }
+
+    .logistics-circle-img {
+      width: 85%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 6px double var(--accent-gold);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .logistics-circle-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Section 6: FAQs Accordion */
+    .faq-section {
+      max-width: 900px;
+      margin: 0 auto 80px;
+      text-align: center;
+    }
+
+    .faq-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+    }
+
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: left;
+    }
+
+    [dir="rtl"] .accordion {
+      text-align: right;
+    }
+
+    .accordion-item {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 20px 24px;
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      outline: none;
+    }
+
+    .accordion-trigger svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2.5;
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-content {
+      padding: 0 24px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .accordion-item.open .accordion-trigger svg {
+      transform: rotate(180deg);
+    }
+
+    .accordion-item.open .accordion-content {
+      max-height: 200px;
+      padding: 0 24px 20px;
+      transition: max-height 0.3s cubic-bezier(1, 0, 1, 0), padding 0.3s ease;
+    }
+
+    /* Section 7: Booking Form CTA */
+    .occ-booking-cta {
+      background-color: var(--bg-card);
+      border: 2px dashed var(--accent-gold);
+      border-radius: 24px;
+      padding: 60px 40px;
+      max-width: 900px;
+      margin: 0 auto 80px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .occ-booking-cta h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .occ-booking-cta p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .occ-booking-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      align-items: end;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+    }
+
+    [dir="rtl"] .form-group {
+      text-align: right;
+    }
+
+    .form-group label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+    }
+
+    .form-input {
+      height: 44px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      padding: 0 14px;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.875rem;
+      width: 100%;
+    }
+
+    .form-input:focus {
+      border-color: var(--accent-rose);
+    }
+
+    .form-submit-btn {
+      grid-column: span 3;
+      margin-top: 10px;
+      background-color: var(--accent-gold);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      height: 44px;
+      font-family: var(--font-title);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .form-submit-btn:hover {
+      background-color: var(--accent-rose);
+      transform: translateY(-2px);
+    }
+
+    /* ----------------------------------------------------
+       FOOTER SECTION
+       ---------------------------------------------------- */
+    footer {
+      background-color: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 60px 0 30px;
+      margin-top: auto; /* Pushes footer to bottom if page content is short */
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-col h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: capitalize;
+      letter-spacing: 0.02em;
+      position: relative;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 32px;
+      height: 3px;
+      background-color: var(--accent-gold);
+      border-radius: 2px;
+    }
+
+    [dir="rtl"] .footer-col h3::after {
+      left: auto;
+      right: 0;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-primary);
+    }
+
+    .footer-logo .logo-svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .footer-logo-text {
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .footer-social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: var(--transition-fast);
+    }
+
+    .footer-social-btn:hover {
+      background-color: var(--accent-rose);
+      border-color: var(--accent-rose);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    .footer-social-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links-item a {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      transition: var(--transition-fast);
+      display: inline-block;
+    }
+
+    .footer-links-item a:hover {
+      color: var(--accent-gold);
+      transform: translateX(calc(4px * var(--dir-sign)));
+    }
+
+    .footer-divider {
+      border: 0;
+      border-top: 1px dashed var(--border-color);
+      margin-bottom: 24px;
+    }
+
+    /* Newsletter form styles */
+    .footer-sub-form {
+      display: flex;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .footer-sub-input {
+      flex-grow: 1;
+      height: 44px;
+      padding: 0 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .footer-sub-input:focus {
+      border-color: var(--accent-rose);
+    }
+
+    .footer-sub-btn {
+      background-color: var(--accent-gold);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .footer-sub-btn:hover {
+      background-color: var(--accent-rose);
+      transform: translateY(-2px);
+    }
+
+    .footer-sub-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-bottom-links a:hover {
+      color: var(--accent-rose);
+    }
+
+    /* Responsive adjustments for footer and layouts */
+    /* Tablet Landscape / Laptop Small (1024px and below) */
+    @media (max-width: 1024px) {
+      .nav-menu {
+        display: none;
+      }
+      .mobile-menu-trigger {
+        display: flex;
+      }
+      .navbar {
+        height: 72px;
+      }
+      header .theme-btn,
+      header .rtl-btn,
+      header .login-btn {
+        display: none;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+      .coordinator-section {
+        grid-template-columns: 1fr;
+      }
+      .occ-tabs {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px;
+      }
+      .occ-tab-btn {
+        white-space: nowrap;
+        padding: 10px 16px;
+      }
+      .occ-tab-btn.active {
+        border-inline-start: none;
+        border-bottom: 3px solid var(--accent-gold);
+        border-radius: 12px 12px 0 0;
+      }
+      .occ-tab-btn svg {
+        display: none;
+      }
+    }
+
+    /* Tablet Portrait (768px and below) */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+      .occ-panel-grid {
+        grid-template-columns: 1fr;
+      }
+      .occ-panel-img {
+        height: 250px;
+      }
+      .tasting-showcase {
+        flex-direction: column;
+        padding: 30px;
+        gap: 30px;
+      }
+      .timeline-row {
+        flex-direction: column;
+        gap: 35px;
+      }
+      .timeline-row::before {
+        display: none;
+      }
+      .timeline-step {
+        padding: 0;
+      }
+      .logistics-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .logistics-circle-img {
+        width: 70%;
+        margin: 0 auto;
+      }
+      .occ-booking-form {
+        grid-template-columns: 1fr;
+      }
+      .form-submit-btn {
+        grid-column: span 1;
+      }
+    }
+
+    /* Mobile Large (480px and below) */
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 12px;
+      }
+      .logo-text {
+        font-size: 1.0rem;
+      }
+      .logo-svg {
+        width: 26px;
+        height: 26px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .footer-col h3 {
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+      .footer-bottom-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .occ-hero h1 {
+        font-size: 2rem;
+      }
+      .tasting-showcase {
+        padding: 24px 16px;
+      }
+      .occ-panel-info {
+        padding: 24px 16px;
+      }
+    }
+
+    /* Mobile Small (320px and below) */
+    @media (max-width: 320px) {
+      .container {
+        padding: 0 8px;
+      }
+      .logo-text {
+        font-size: 1.1rem;
+      }
+      .logo-svg {
+        width: 30px;
+        height: 30px;
+      }
+      .footer-sub-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .footer-sub-btn {
+        width: 100%;
+        height: 40px;
+      }
+      .mobile-drawer {
+        width: 100%;
+        max-width: 100vw;
+      }
+    }
+
+    /* Floating Action Button (FAB) */
+    .logo-fab {
+      position: fixed;
+      bottom: 96px;
+      inset-inline-end: 30px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: var(--bg-card);
+      border: 2px solid var(--accent-gold);
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+      outline: none;
+      opacity: 0;
+      transform: translateY(20px) scale(0.8);
+      pointer-events: none;
+    }
+
+    .logo-fab.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .logo-fab:hover {
+      transform: translateY(-5px) scale(1.1) rotate(8deg);
+      background-color: var(--bg-primary);
+      border-color: var(--accent-rose);
+    }
+
+    .fab-logo-svg {
+      width: 32px;
+      height: 32px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ----------------------------------------------------
+       HEADER & NAVIGATION
+       ---------------------------------------------------- -->
+  <header>
+    <div class="container navbar">
+      
+      <!-- Left side: Creative Cake Logo -->
+      <a href="index.html" class="logo-container" id="logoLink">
+        <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer Golden Crest Circles -->
+          <circle cx="50" cy="50" r="44" stroke="var(--accent-gold)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6" />
+          <circle cx="50" cy="50" r="40" stroke="var(--accent-gold)" stroke-width="1.5" />
+          <circle cx="50" cy="50" r="37" stroke="var(--accent-gold)" stroke-width="0.8" stroke-dasharray="1 2" opacity="0.8" />
+          
+          <!-- Crest Wreath / Foliage Leaves -->
+          <path d="M22 55 C22 35, 30 25, 43 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+          <path d="M78 55 C78 35, 70 25, 57 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+          <!-- Wreath Leaf Details -->
+          <path d="M26 42 Q23 38 27 35 Q29 38 26 42" fill="var(--accent-gold)" />
+          <path d="M33 32 Q30 28 34 25 Q36 28 33 32" fill="var(--accent-gold)" />
+          <path d="M74 42 Q77 38 73 35 Q71 38 74 42" fill="var(--accent-gold)" />
+          <path d="M67 32 Q70 28 66 25 Q64 28 67 32" fill="var(--accent-gold)" />
+
+          <!-- Two-Tier Luxury Cake Silhouette -->
+          <!-- Base Tier -->
+          <path d="M32 64 C32 60, 35 58, 40 58 H60 C65 58, 68 60, 68 64 V72 H32 Z" fill="var(--accent-rose)" stroke="var(--text-primary)" stroke-width="1.5" />
+          <!-- Top Tier -->
+          <path d="M38 48 C38 45, 40 43, 44 43 H56 C60 43, 62 45, 62 48 V58 H38 Z" fill="var(--accent-gold)" stroke="var(--text-primary)" stroke-width="1.5" />
+          
+          <!-- Cake Decorative Frosting / Drips -->
+          <!-- Top Tier Swags -->
+          <path d="M38 48 Q44 51 50 48 Q56 51 62 48" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+          <!-- Base Tier Swags -->
+          <path d="M32 64 Q41 68 50 64 Q59 68 68 64" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+          
+          <!-- Lit Candle / Stem on Top -->
+          <line x1="50" y1="38" x2="50" y2="32" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" />
+          
+          <!-- Star / Sparkle Flame on Top -->
+          <path d="M50 22 L52 27 L57 28 L53 31 L54 36 L50 33 L46 36 L47 31 L43 28 L48 27 Z" fill="var(--accent-gold)" />
+          
+          <!-- Magic Sparkle Dots -->
+          <circle cx="31" cy="39" r="1.5" fill="var(--accent-gold)" />
+          <circle cx="69" cy="42" r="1.5" fill="var(--accent-rose)" />
+          <circle cx="50" cy="17" r="1.8" fill="var(--accent-gold)" />
+        </svg>
+        <span class="logo-text">LUXE BAKES</span>
+      </a>
+
+      <!-- Center: Menu Links (10 items) -->
+      <nav>
+        <ul class="nav-menu" id="desktopNavMenu">
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="homeLink">
+              Home
+              <svg class="chevron-icon" viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="dropdown-menu">
+              <a href="Home 1.html" class="dropdown-item"><strong>Home 1</strong></a>
+              <a href="Home 2.html" class="dropdown-item"><strong>Home 2</strong></a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a href="categories.html" class="nav-link" id="categoriesLink">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a href="fresh-bakes.html" class="nav-link">Fresh Bakes</a>
+          </li>
+          <li class="nav-item">
+            <a href="desserts.html" class="nav-link">Desserts</a>
+          </li>
+          <li class="nav-item">
+            <a href="cake-gallery.html" class="nav-link">Cake Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a href="special-occasions.html" class="nav-link active">Special Occasions</a>
+          </li>
+          <li class="nav-item">
+            <a href="offers.html" class="nav-link">Offers</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact Us</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right Side: Dark Mode, RTL, and Login -->
+      <div class="right-actions">
+        <!-- Dark Mode Toggle Button -->
+        <button class="theme-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
+          <svg class="sun-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- LTR/RTL Toggle Button -->
+        <button class="rtl-btn" id="rtlToggleBtn" aria-label="Toggle Layout Direction" title="Toggle Left-to-Right / Right-to-Left">
+          <i class="fa-solid fa-right-left"></i>
+        </button>
+
+        <!-- Login Button -->
+        <a href="login.html" class="login-btn" id="loginBtn" title="Account Login">
+          <span>Login</span>
+          <svg class="login-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <!-- Hamburger Icon (collapsed navigation) -->
+        <button class="mobile-menu-trigger" id="mobileMenuTrigger" aria-label="Toggle Mobile Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ----------------------------------------------------
+       MOBILE DRAWER SLIDEOUT & OVERLAY
+       ---------------------------------------------------- -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="drawer-header">
+      <div class="logo-container" style="cursor: default;">
+        <span class="logo-text" style="font-size: 1.45rem;">Luxe Bakes</span>
+      </div>
+      <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <nav class="drawer-nav" id="drawerNavLinks">
+      <div>
+        <a href="#" class="drawer-nav-link" id="drawerHomeToggle">
+          Home
+          <svg class="chevron-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
+        <div class="drawer-category-group" id="drawerHomeGroup">
+          <a href="Home 1.html" class="drawer-sub-link">Home 1</a>
+          <a href="Home 2.html" class="drawer-sub-link">Home 2</a>
+        </div>
+      </div>
+      <a href="about.html" class="drawer-nav-link">About Us</a>
+      <a href="categories.html" class="drawer-nav-link" id="drawerCategoriesLink">Categories</a>
+      <a href="fresh-bakes.html" class="drawer-nav-link">Fresh Bakes</a>
+      <a href="desserts.html" class="drawer-nav-link">Desserts</a>
+      <a href="cake-gallery.html" class="drawer-nav-link">Cake Gallery</a>
+      <a href="special-occasions.html" class="drawer-nav-link active">Special Occasions</a>
+      <a href="offers.html" class="drawer-nav-link">Offers</a>
+      <a href="contact.html" class="drawer-nav-link">Contact Us</a>
+    </nav>
+    
+    <div class="drawer-footer">
+      <div class="drawer-actions">
+        <!-- Mobile Dark Mode Toggle Button -->
+        <button class="theme-btn" id="mobileThemeToggleBtn" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
+          <svg class="sun-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile LTR/RTL Toggle Button -->
+        <button class="rtl-btn" id="mobileRtlToggleBtn" aria-label="Toggle Layout Direction" title="Toggle Left-to-Right / Right-to-Left">
+          <i class="fa-solid fa-right-left"></i>
+        </button>
+      </div>
+      <a href="login.html" class="login-btn" style="width: 100%; justify-content: center;" id="mobileLoginBtn">
+        <span>Login</span>
+        <svg class="login-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ====================================================
+       SECTION 1: HERO BANNER
+       ==================================================== -->
+  <section class="occ-hero">
+    <div class="container">
+      <h1>Custom Event Catering</h1>
+      <p>Elevate your special moments with our premium celebration cakes and dessert tables. From intimate baby showers to grand corporate events.</p>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 2: TABBED COORDINATOR DECK (6 OCCASIONS)
+       ==================================================== -->
+  <section class="container coordinator-section">
+    <!-- Occasion Selector Tabs -->
+    <div class="occ-tabs">
+      <button class="occ-tab-btn active" onclick="showOccasion('birthdays', this)">
+        <span>Birthdays</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+      <button class="occ-tab-btn" onclick="showOccasion('wedding', this)">
+        <span>Wedding</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+      <button class="occ-tab-btn" onclick="showOccasion('anniversaries', this)">
+        <span>Anniversaries</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+      <button class="occ-tab-btn" onclick="showOccasion('babyshowers', this)">
+        <span>Baby Showers</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+      <button class="occ-tab-btn" onclick="showOccasion('graduations', this)">
+        <span>Graduations</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+      <button class="occ-tab-btn" onclick="showOccasion('corporate', this)">
+        <span>Corporate Events</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+
+    <!-- Occasion Content Deck -->
+    <div class="occ-content-deck" id="occContentDeck">
+      
+      <!-- Panel 1: Birthdays -->
+      <div class="occ-panel active" id="panel-birthdays">
+        <div class="occ-panel-grid">
+          <div class="occ-panel-img">
+            <img src="images/occ_birthday.png" alt="Joyful birthday cake with pastel balloons">
+          </div>
+          <div class="occ-panel-info">
+            <h3>Birthday Celebrations</h3>
+            <p>From whimsical kid themes filled with cartoon fondant characters to sophisticated chocolate drip drip towers for adults, we bake the highlight of your year.</p>
+            <ul class="occ-inclusions">
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Custom color palettes &amp; topper selections</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Lead time: 3-5 days in advance</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Includes allergen-free options (eggless, gluten-free)</span>
+              </li>
+            </ul>
+            <button class="login-btn" onclick="showToast('Opening Birthday Inquiry Form')">Enquire Birthdays</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Wedding -->
+      <div class="occ-panel" id="panel-wedding">
+        <div class="occ-panel-grid">
+          <div class="occ-panel-img">
+            <img src="images/occ_wedding.png" alt="Elegant white tiered wedding cake in garden">
+          </div>
+          <div class="occ-panel-info">
+            <h3>Grand Wedding Cakes</h3>
+            <p>Make your special vows memorable with a grand tiered wedding centerpiece. Hand-crafted white lace frosting, custom fondant accents, and edible florals.</p>
+            <ul class="occ-inclusions">
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Includes private flavor tasting consultation</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Lead time: 3-6 months in advance</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Full temperature-controlled delivery &amp; on-site assembly</span>
+              </li>
+            </ul>
+            <button class="login-btn" onclick="showToast('Opening Wedding Inquiry Form')">Enquire Wedding</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Anniversaries -->
+      <div class="occ-panel" id="panel-anniversaries">
+        <div class="occ-panel-grid">
+          <div class="occ-panel-img">
+            <img src="images/occ_anniversary.png" alt="Rose gold anniversary cake with flowers">
+          </div>
+          <div class="occ-panel-info">
+            <h3>Milestone Anniversaries</h3>
+            <p>Celebrate lasting commitments with elegant rose gold, silver, and burgundy themed cakes, finished with hand-crafted sugar flowers and champagne pairings.</p>
+            <ul class="occ-inclusions">
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Custom numeral toppers &amp; anniversary plaques</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Lead time: 7-10 days in advance</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Available with matching cupcake &amp; macaron bundles</span>
+              </li>
+            </ul>
+            <button class="login-btn" onclick="showToast('Opening Anniversary Inquiry Form')">Enquire Anniversaries</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 4: Baby Showers -->
+      <div class="occ-panel" id="panel-babyshowers">
+        <div class="occ-panel-grid">
+          <div class="occ-panel-img">
+            <img src="images/occ_babyshower.png" alt="Whimsical pastel baby shower cake with sleeping moon">
+          </div>
+          <div class="occ-panel-info">
+            <h3>Whimsical Baby Showers</h3>
+            <p>Sweet and memorable gender reveal or baby shower creations, styled with soft dreamlike pastel clouds, sleeping moons, stars, and fondant baby shoes.</p>
+            <ul class="occ-inclusions">
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Hidden colored sponge core for gender reveals</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Lead time: 7-14 days in advance</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Light cream cheese and soft organic fruit flavors</span>
+              </li>
+            </ul>
+            <button class="login-btn" onclick="showToast('Opening Baby Shower Inquiry Form')">Enquire Baby Showers</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 5: Graduations -->
+      <div class="occ-panel" id="panel-graduations">
+        <div class="occ-panel-grid">
+          <div class="occ-panel-img">
+            <!-- Reusing the book/theme cake image -->
+            <img src="images/cat_theme.png" alt="Graduation cake shaped like textbooks with key">
+          </div>
+          <div class="occ-panel-info">
+            <h3>Graduation Achievements</h3>
+            <p>Celebrate hard-earned academic success with academic-themed cakes. Shaped like vintage leather-bound textbooks with fondant mortarboards, scrolls, and tassels.</p>
+            <ul class="occ-inclusions">
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>School color matching &amp; graduation year details</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Lead time: 5-7 days in advance</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Perfect sizing for high school and university parties</span>
+              </li>
+            </ul>
+            <button class="login-btn" onclick="showToast('Opening Graduation Inquiry Form')">Enquire Graduations</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 6: Corporate -->
+      <div class="occ-panel" id="panel-corporate">
+        <div class="occ-panel-grid">
+          <div class="occ-panel-img">
+            <!-- Reusing the corporate cake image -->
+            <img src="images/gal_corporate.png" alt="Square white corporate cake with geometric patterns">
+          </div>
+          <div class="occ-panel-info">
+            <h3>Sleek Corporate Events</h3>
+            <p>Clean-cut branding cakes, product launch showcases, and multi-tier cupcakes tower setups for business openings, annual galas, and office parties.</p>
+            <ul class="occ-inclusions">
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Edible logo printing &amp; geometric corporate themes</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Lead time: 2-3 weeks in advance for grand tables</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="16" height="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Includes corporate corporate billing &amp; catering setup</span>
+              </li>
+            </ul>
+            <button class="login-btn" onclick="showToast('Opening Corporate Inquiry Form')">Enquire Corporate</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 3: CAKE TASTING EXPERIENCE
+       ==================================================== -->
+  <section class="container">
+    <div class="tasting-showcase">
+      <div class="tasting-text">
+        <span class="section-tag" style="color: var(--accent-gold); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 12px; display: inline-block;">Private Tasting Suite</span>
+        <h2>The Cake Tasting Experience</h2>
+        <p>Before locking in your grand event centerpiece, join us in our private boutique suite for a luxury cake tasting session. Guided by our head cake designer, you'll sample five signature sponge flavors paired with our buttercream, fillings, and fruit coulis.</p>
+        <p>Complemented by organic coffees and herbal tea pairings. Tasting session fees are fully credited towards your final cake order.</p>
+        <button class="login-btn" onclick="showToast('Booking Private Tasting Session... ')">Book Tasting Table</button>
+      </div>
+      <div class="tasting-img">
+        <img src="images/cafe_seating.png" alt="Cake Tasting Table Setting">
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 4: BOOKING TIMELINE
+       ==================================================== -->
+  <section class="container timeline-section">
+    <h2>Our Event Cake Process</h2>
+    <div class="timeline-row">
+      <!-- Step 1 -->
+      <div class="timeline-step">
+        <div class="timeline-icon-box">1</div>
+        <h3>Enquiry &amp; Details</h3>
+        <p>Submit date, guest count, and references via our form below.</p>
+      </div>
+      <!-- Step 2 -->
+      <div class="timeline-step">
+        <div class="timeline-icon-box">2</div>
+        <h3>Private Tasting</h3>
+        <p>Book tasting table to try sponge and cream pairings.</p>
+      </div>
+      <!-- Step 3 -->
+      <div class="timeline-step">
+        <div class="timeline-icon-box">3</div>
+        <h3>Design Approval</h3>
+        <p>We provide a mock sketch and final color specifications.</p>
+      </div>
+      <!-- Step 4 -->
+      <div class="timeline-step">
+        <div class="timeline-icon-box">4</div>
+        <h3>On-site Delivery</h3>
+        <p>Our team delivers and sets up the cake at your event venue.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 5: EVENT LOGISTICS
+       ==================================================== -->
+  <section class="container logistics-section">
+    <div class="logistics-img">
+      <div class="logistics-circle-img">
+        <img src="images/gal_wedding.png" alt="Outdoor wedding cake assembly showcase">
+      </div>
+    </div>
+    <div class="logistics-text">
+      <h2>Temperature-Controlled Delivery</h2>
+      <p>Luxury tiered cakes are heavy and delicate. A slight temperature increase can melt buttercream roses or offset sugar pillars.</p>
+      <p>To guarantee your cake arrives in pristine museum-level condition, we deliver via our custom fleet of temperature-controlled vans. Our on-site catering team will assemble, place, and groom the tiers on your display table before guests arrive.</p>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 6: PRIVATE FAQS (ACCORDION)
+       ==================================================== -->
+  <section class="container faq-section">
+    <h2>Special Occasion FAQs</h2>
+    <div class="accordion">
+      <!-- Item 1 -->
+      <div class="accordion-item open">
+        <button class="accordion-trigger" onclick="toggleFaq(this)">
+          <span>How far in advance should I book my wedding cake?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="accordion-content">
+          We recommend booking wedding cakes 3 to 6 months in advance. Because we only accept a limited number of complex custom cake assemblies per weekend to maintain premium quality, dates fill up very quickly during spring and summer.
+        </div>
+      </div>
+      <!-- Item 2 -->
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleFaq(this)">
+          <span>Do you accommodate dietary restrictions and allergies?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="accordion-content">
+          Yes! We offer premium eggless, gluten-free, dairy-free, and nut-free recipes. Please note that while we follow strict sanitation guidelines, all cakes are baked in a kitchen that handles wheat, nuts, and dairy.
+        </div>
+      </div>
+      <!-- Item 3 -->
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleFaq(this)">
+          <span>What is your cancellation and date postponement policy?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="accordion-content">
+          Date changes are permitted free of charge up to 30 days prior to the event, subject to calendar availability. Cancellations made more than 30 days prior receive a full refund of deposit, minus a small design processing fee.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 7: BOOKING FORM CTA
+       ==================================================== -->
+  <section class="container">
+    <div class="occ-booking-cta">
+      <h2>Start Event Enquiry</h2>
+      <p>Fill out the fields below and our dedicated event coordinator will reach out to schedule a consultation.</p>
+      
+      <form class="occ-booking-form" onsubmit="event.preventDefault(); showToast('Event Enquiry Submitted Successfully! ');">
+        <!-- Input 1 -->
+        <div class="form-group">
+          <label for="occType">Occasion Type</label>
+          <select class="form-input" id="occType" required>
+            <option value="">Select Occasion</option>
+            <option value="birthday">Birthday Celebration</option>
+            <option value="wedding">Grand Wedding</option>
+            <option value="anniversary">Anniversary</option>
+            <option value="babyshower">Baby Shower</option>
+            <option value="graduation">Graduation Party</option>
+            <option value="corporate">Corporate Event</option>
+          </select>
+        </div>
+        <!-- Input 2 -->
+        <div class="form-group">
+          <label for="eventDate">Event Date</label>
+          <input type="date" class="form-input" id="eventDate" required>
+        </div>
+        <!-- Input 3 -->
+        <div class="form-group">
+          <label for="guestCount">Guest Count</label>
+          <input type="number" class="form-input" id="guestCount" min="10" placeholder="Min 10 guests" required>
+        </div>
+        
+        <!-- Submit Button -->
+        <button type="submit" class="form-submit-btn">Submit Enquiry Details</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ----------------------------------------------------
+       FOOTER
+       ---------------------------------------------------- -->
+  <footer>
+    <div class="container footer-grid">
+      <!-- Col 1: Brand & Socials -->
+      <div class="footer-col">
+        <a href="index.html" class="footer-logo">
+          <!-- Same Crested Cake Logo as Navbar -->
+          <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer Golden Crest Circles -->
+            <circle cx="50" cy="50" r="44" stroke="var(--accent-gold)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6" />
+            <circle cx="50" cy="50" r="40" stroke="var(--accent-gold)" stroke-width="1.5" />
+            <circle cx="50" cy="50" r="37" stroke="var(--accent-gold)" stroke-width="0.8" stroke-dasharray="1 2" opacity="0.8" />
+            
+            <!-- Crest Wreath / Foliage Leaves -->
+            <path d="M22 55 C22 35, 30 25, 43 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+            <path d="M78 55 C78 35, 70 25, 57 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+            <!-- Wreath Leaf Details -->
+            <path d="M26 42 Q23 38 27 35 Q29 38 26 42" fill="var(--accent-gold)" />
+            <path d="M33 32 Q30 28 34 25 Q36 28 33 32" fill="var(--accent-gold)" />
+            <path d="M74 42 Q77 38 73 35 Q71 38 74 42" fill="var(--accent-gold)" />
+            <path d="M67 32 Q70 28 66 25 Q64 28 67 32" fill="var(--accent-gold)" />
+
+            <!-- Two-Tier Luxury Cake Silhouette -->
+            <!-- Base Tier -->
+            <path d="M32 64 C32 60, 35 58, 40 58 H60 C65 58, 68 60, 68 64 V72 H32 Z" fill="var(--accent-rose)" stroke="var(--text-primary)" stroke-width="1.5" />
+            <!-- Top Tier -->
+            <path d="M38 48 C38 45, 40 43, 44 43 H56 C60 43, 62 45, 62 48 V58 H38 Z" fill="var(--accent-gold)" stroke="var(--text-primary)" stroke-width="1.5" />
+            
+            <!-- Cake Decorative Frosting / Drips -->
+            <!-- Top Tier Swags -->
+            <path d="M38 48 Q44 51 50 48 Q56 51 62 48" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+            <!-- Base Tier Swags -->
+            <path d="M32 64 Q41 68 50 64 Q59 68 68 64" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+            
+            <!-- Lit Candle / Stem on Top -->
+            <line x1="50" y1="38" x2="50" y2="32" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" />
+            
+            <!-- Star / Sparkle Flame on Top -->
+            <path d="M50 22 L52 27 L57 28 L53 31 L54 36 L50 33 L46 36 L47 31 L43 28 L48 27 Z" fill="var(--accent-gold)" />
+            
+            <!-- Magic Sparkle Dots -->
+            <circle cx="31" cy="39" r="1.5" fill="var(--accent-gold)" />
+            <circle cx="69" cy="42" r="1.5" fill="var(--accent-rose)" />
+            <circle cx="50" cy="17" r="1.8" fill="var(--accent-gold)" />
+          </svg>
+          <span class="footer-logo-text">Luxe Bakes</span>
+        </a>
+        <p class="footer-desc">
+          Licensed, registered, and organic artisanal bakery &amp; confectionery. Fresh daily deck-oven bakes, custom celebration cakes, and pastry masterclasses. Available for events.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="#" class="footer-social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href="#" class="footer-social-btn" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22c-.6 0-1.2-.3-1.5-.8L5.3 19c-.8-1.5-1.3-3.2-1.3-5 0-5 4-9 9-9s9 4 9 9-4 9-9 9c-1.3 0-2.5-.3-3.7-.8l-1.3.8z"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Bakery Services -->
+      <div class="footer-col">
+        <h3>Bakery Services</h3>
+        <ul class="footer-links">
+          <li class="footer-links-item"><a href="#">Custom Cake Design</a></li>
+          <li class="footer-links-item"><a href="#">Wedding Consultations</a></li>
+          <li class="footer-links-item"><a href="#">Catering &amp; Events</a></li>
+          <li class="footer-links-item"><a href="#">Baking Masterclasses</a></li>
+          <li class="footer-links-item"><a href="#">Gift Cards &amp; Hampers</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Resources & Info -->
+      <div class="footer-col">
+        <h3>Resources &amp; Info</h3>
+        <ul class="footer-links">
+          <li class="footer-links-item"><a href="#">About Our Bakers</a></li>
+          <li class="footer-links-item"><a href="#">Allergen &amp; Ingredients</a></li>
+          <li class="footer-links-item"><a href="#">Delivery Information</a></li>
+          <li class="footer-links-item"><a href="#">Baking Blog &amp; Recipes</a></li>
+          <li class="footer-links-item"><a href="#">Customer Reviews</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Sweet News & Offers -->
+      <div class="footer-col">
+        <h3>Sweet News &amp; Offers</h3>
+        <p class="footer-desc">
+          Subscribe for baking tips, fresh product drops &amp; special birthday cake deals.
+        </p>
+        <form class="footer-sub-form" onsubmit="event.preventDefault(); showToast('Subscribed to newsletter! ');">
+          <input type="email" class="footer-sub-input" placeholder="Enter your email" required aria-label="Email address">
+          <button type="submit" class="footer-sub-btn" aria-label="Subscribe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <hr class="footer-divider">
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Luxe Bakes &amp; Cake Shop. All rights reserved. Baking love daily.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookies Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Wrapper -->
+  <div class="toast-notif" id="toastNotif">
+    <span id="toastIcon">âœ¨</span>
+    <span id="toastMsg">Action completed!</span>
+  </div>
+
+  <!-- ----------------------------------------------------
+       INTERACTIVE JAVASCRIPT
+       ---------------------------------------------------- -->
+  <script>
+    // Cache DOM Elements
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const mobileThemeToggleBtn = document.getElementById('mobileThemeToggleBtn');
+    const rtlToggleBtn = document.getElementById('rtlToggleBtn');
+    const mobileRtlToggleBtn = document.getElementById('mobileRtlToggleBtn');
+    const loginBtn = document.getElementById('loginBtn');
+    const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+    
+    const mobileMenuTrigger = document.getElementById('mobileMenuTrigger');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileDrawerOverlay = document.getElementById('mobileDrawerOverlay');
+    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+    const drawerNavLinks = document.getElementById('drawerNavLinks');
+    
+    const logoLink = document.getElementById('logoLink');
+    const categoriesLink = document.getElementById('categoriesLink');
+    const toastNotif = document.getElementById('toastNotif');
+    const toastMsg = document.getElementById('toastMsg');
+    
+    const desktopLinks = document.querySelectorAll('#desktopNavMenu .nav-link');
+    const drawerLinks = document.querySelectorAll('#drawerNavLinks .drawer-nav-link');
+
+    /* ----------------------------------------------------
+       THEME CONTROLLER (LIGHT/DARK)
+       ---------------------------------------------------- */
+    function initTheme() {
+      const savedTheme = localStorage.getItem('bakery-theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
+      }
+    }
+
+    // Toggle occasion panels
+    function showOccasion(occasionId, button) {
+      document.querySelectorAll('.occ-tab-btn').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      document.querySelectorAll('.occ-panel').forEach(panel => panel.classList.remove('active'));
+      document.getElementById(`panel-${occasionId}`).classList.add('active');
+
+      showToast(`Showing coordinator deck for: ${button.innerText}`);
+    }
+    window.showOccasion = showOccasion;
+
+    // Toggle FAQ accordions
+    function toggleFaq(button) {
+      const item = button.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+      
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    }
+    window.toggleFaq = toggleFaq;
+
+    function setTheme(theme) {
+      htmlEl.setAttribute('data-theme', theme);
+      localStorage.setItem('bakery-theme', theme);
+    }
+
+    function toggleThemeAction() {
+      const currentTheme = htmlEl.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+      showToast(`Switched to ${newTheme.toUpperCase()} theme `);
+    }
+    themeToggleBtn.addEventListener('click', toggleThemeAction);
+    mobileThemeToggleBtn.addEventListener('click', toggleThemeAction);
+
+    /* ----------------------------------------------------
+       LAYOUT DIRECTION CONTROLLER (LTR/RTL)
+       ---------------------------------------------------- */
+    function initDirection() {
+      const savedDir = localStorage.getItem('bakery-dir');
+      if (savedDir) {
+        setDirection(savedDir);
+      } else {
+        setDirection('ltr');
+      }
+    }
+
+    function setDirection(dir) {
+      htmlEl.setAttribute('dir', dir);
+      localStorage.setItem('bakery-dir', dir);
+      if (dir === 'rtl') {
+        rtlToggleBtn.classList.add('rtl');
+        mobileRtlToggleBtn.classList.add('rtl');
+      } else {
+        rtlToggleBtn.classList.remove('rtl');
+        mobileRtlToggleBtn.classList.remove('rtl');
+      }
+    }
+
+    function toggleDirectionAction() {
+      const currentDir = htmlEl.getAttribute('dir') || 'ltr';
+      const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+      setDirection(newDir);
+      showToast(`Switched layout to ${newDir.toUpperCase()} `);
+    }
+    rtlToggleBtn.addEventListener('click', toggleDirectionAction);
+    mobileRtlToggleBtn.addEventListener('click', toggleDirectionAction);
+
+    /* ----------------------------------------------------
+       MOBILE DRAWER CONTROLLER
+       ---------------------------------------------------- */
+    function openDrawer() {
+      mobileDrawer.classList.add('open');
+      mobileDrawerOverlay.classList.add('open');
+      mobileMenuTrigger.classList.add('open');
+      bodyEl.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      mobileDrawer.classList.remove('open');
+      mobileDrawerOverlay.classList.remove('open');
+      mobileMenuTrigger.classList.remove('open');
+      bodyEl.style.overflow = '';
+    }
+
+    mobileMenuTrigger.addEventListener('click', () => {
+      if (mobileDrawer.classList.contains('open')) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+
+    drawerCloseBtn.addEventListener('click', closeDrawer);
+    mobileDrawerOverlay.addEventListener('click', closeDrawer);
+
+
+    // Toggle home group inside mobile drawer
+    const drawerHomeToggle = document.getElementById('drawerHomeToggle');
+    const drawerHomeGroup = document.getElementById('drawerHomeGroup');
+    drawerHomeToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      drawerHomeGroup.classList.toggle('open');
+      const arrowIcon = drawerHomeToggle.querySelector('.chevron-icon');
+      if (drawerHomeGroup.classList.contains('open')) {
+        arrowIcon.style.transform = 'rotate(180deg)';
+      } else {
+        arrowIcon.style.transform = '';
+      }
+    });
+
+    // Close drawer when a mobile link is clicked
+    document.querySelectorAll('.drawer-nav-link, .drawer-sub-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (link.id === 'drawerHomeToggle') return;
+        closeDrawer();
+      });
+    });
+
+    // Highlight active link when clicked (mock routing)
+    desktopLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.classList.contains('dropdown-toggle')) return;
+        desktopLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        showToast(`Navigated to: ${this.innerText}`);
+      });
+    });
+
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.id === 'drawerCategoriesToggle') return;
+        drawerLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        showToast(`Navigated to: ${this.innerText}`);
+      });
+    });
+
+    /* ----------------------------------------------------
+       LOGIN TRIGGERS
+       ---------------------------------------------------- */
+    
+
+    
+    
+
+    /* ----------------------------------------------------
+       TOAST ACTIONS
+       ---------------------------------------------------- */
+    let toastTimeout;
+    function showToast(message) {
+      toastMsg.innerText = message;
+      toastNotif.classList.add('show');
+      
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toastNotif.classList.remove('show');
+      }, 3000);
+    }
+    window.showToast = showToast;
+
+    // Initializations
+    initTheme();
+    initDirection();
+
+
+    // Logo FAB Scroll-to-Top Behavior
+    const logoFab = document.getElementById('logoFab');
+    if (logoFab) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          logoFab.classList.add('show');
+        } else {
+          logoFab.classList.remove('show');
+        }
+      });
+      logoFab.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  </script>
+
+  <!-- Floating Action Button (Logo FAB) -->
+  <button class="logo-fab" id="logoFab" title="Back to Top" aria-label="Back to Top">
+    <svg class="fab-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer Golden Crest Circles -->
+      <circle cx="50" cy="50" r="44" stroke="var(--accent-gold)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6" />
+      <circle cx="50" cy="50" r="40" stroke="var(--accent-gold)" stroke-width="1.5" />
+      <circle cx="50" cy="50" r="37" stroke="var(--accent-gold)" stroke-width="0.8" stroke-dasharray="1 2" opacity="0.8" />
+      
+      <!-- Crest Wreath / Foliage Leaves -->
+      <path d="M22 55 C22 35, 30 25, 43 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+      <path d="M78 55 C78 35, 70 25, 57 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+      
+      <!-- Tiny Accent Crest Berries / Dots -->
+      <path d="M26 42 Q23 38 27 35 Q29 38 26 42" fill="var(--accent-gold)" />
+      <path d="M33 32 Q30 28 34 25 Q36 28 33 32" fill="var(--accent-gold)" />
+      <path d="M74 42 Q77 38 73 35 Q71 38 74 42" fill="var(--accent-gold)" />
+      <path d="M67 32 Q70 28 66 25 Q64 28 67 32" fill="var(--accent-gold)" />
+      
+      <!-- Central Cake Structure -->
+      <!-- Tier 1 (Base - Rose/Burgundy) -->
+      <path d="M32 64 C32 60, 35 58, 40 58 H60 C65 58, 68 60, 68 64 V72 H32 Z" fill="var(--accent-rose)" stroke="var(--text-primary)" stroke-width="1.5" />
+      <!-- Tier 2 (Top - Champagne Gold) -->
+      <path d="M38 48 C38 45, 40 43, 44 43 H56 C60 43, 62 45, 62 48 V58 H38 Z" fill="var(--accent-gold)" stroke="var(--text-primary)" stroke-width="1.5" />
+      
+      <!-- Wavy Swag/Drape Piping Details -->
+      <path d="M38 48 Q44 51 50 48 Q56 51 62 48" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+      <path d="M32 64 Q41 68 50 64 Q59 68 68 64" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+      
+      <!-- Candle & Spark/Flame -->
+      <line x1="50" y1="38" x2="50" y2="32" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M50 22 L52 27 L57 28 L53 31 L54 36 L50 33 L46 36 L47 31 L43 28 L48 27 Z" fill="var(--accent-gold)" />
+      
+      <!-- Tiny Decorative Star Dots -->
+      <circle cx="31" cy="39" r="1.5" fill="var(--accent-gold)" />
+      <circle cx="69" cy="42" r="1.5" fill="var(--accent-rose)" />
+      <circle cx="50" cy="17" r="1.8" fill="var(--accent-gold)" />
+    </svg>
+  </button>
+
+</body>
+</html>
+
+
+

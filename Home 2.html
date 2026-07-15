@@ -1,0 +1,2278 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Luxe Bakes Home 2 - Read our culinary timelines, book bakery masterclasses, and explore our boutique tea room lounge.">
+  <title>Luxe Bakes - Culinary Timelines &amp; Baking Academies</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ----------------------------------------------------
+       DESIGN SYSTEM & CSS VARIABLES
+       ---------------------------------------------------- */
+    :root {
+      /* Typography */
+      --font-logo: 'Playfair Display', serif;
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --font-title: 'Outfit', sans-serif;
+      
+      /* Standard Transitions */
+      --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      
+      /* Layout Direction Helpers */
+      --dir-sign: 1; /* 1 for LTR, -1 for RTL */
+      
+      /* Light Mode Palette - Royal Plum & Gold */
+      --bg-primary: #FAF7F2;
+      --bg-secondary: #FFFDFB;
+      --bg-navbar: rgba(250, 247, 242, 0.85);
+      --bg-card: #FFFFFF;
+      --text-primary: #221617;
+      --text-secondary: #6C595B;
+      --text-muted: #9A8587;
+      --accent-rose: #6B2335; /* Premium Burgundy/Plum */
+      --accent-rose-hover: #531522;
+      --accent-gold: #D4AF37; /* Vintage Champagne Gold */
+      --accent-gold-hover: #C5A02E;
+      --border-color: rgba(107, 35, 53, 0.08);
+      --border-focus: var(--accent-rose);
+      --shadow-sm: 0 4px 6px -1px rgba(107, 35, 53, 0.03);
+      --shadow-md: 0 12px 20px -3px rgba(107, 35, 53, 0.05);
+      --shadow-lg: 0 24px 36px -4px rgba(107, 35, 53, 0.08);
+      --glass-blur: blur(16px);
+      --toggle-track: #EFE9E2;
+      
+      scroll-behavior: smooth;
+    }
+
+    [data-theme="dark"] {
+      /* Dark Mode Palette - Dusty Rose & Gold */
+      --bg-primary: #181112;
+      --bg-secondary: #21191B;
+      --bg-navbar: rgba(24, 17, 18, 0.85);
+      --bg-card: #281F21;
+      --text-primary: #F7EFEF;
+      --text-secondary: #CDBCBD;
+      --text-muted: #9F8C8D;
+      --accent-rose: #E59AA6;
+      --accent-rose-hover: #ECA8B3;
+      --accent-gold: #ECC772;
+      --accent-gold-hover: #F7D485;
+      --border-color: rgba(247, 239, 239, 0.08);
+      --border-focus: var(--accent-rose);
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 12px 20px -3px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 24px 36px -4px rgba(0, 0, 0, 0.5);
+      --toggle-track: #2D2123;
+    }
+
+    [dir="rtl"] {
+      --dir-sign: -1;
+    }
+
+    /* ----------------------------------------------------
+       RESET & BASE STYLES
+       ---------------------------------------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: inline-block;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    html {
+      overflow-x: clip;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: clip;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-title);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* ----------------------------------------------------
+       HEADER & NAVBAR
+       ---------------------------------------------------- */
+    header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: var(--bg-navbar);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px; /* Reduced navbar height */
+    }
+
+    /* Left Side: Logo & Brand */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .logo-svg {
+      width: 30px; /* Reduced logo size */
+      height: 30px;
+      flex-shrink: 0;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .logo-container:hover .logo-svg {
+      transform: scale(1.1) rotate(8deg);
+    }
+
+    .logo-text {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    /* Center Section: Navigation Menu (10 items) */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 2px; /* Reduced gap */
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 8px; /* Reduced padding */
+      font-family: var(--font-title);
+      font-size: 0.65rem; /* Reduced font size */
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-primary);
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--accent-rose);
+      background-color: rgba(107, 35, 53, 0.06);
+    }
+
+    .nav-link.active {
+      color: var(--accent-rose);
+      background-color: rgba(107, 35, 53, 0.04);
+    }
+
+    /* Underline animation on hover/active */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 16px; /* Reduced underline width */
+      height: 3px;
+      background-color: var(--accent-gold);
+      border-radius: 2px;
+      transform: translateX(-50%) scaleX(0);
+      transition: var(--transition-fast);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    /* Chevron Indicator Icon */
+    .chevron-icon {
+      width: 10px; /* Reduced chevron size */
+      height: 10px;
+      stroke-width: 2.5;
+      transition: transform 0.25s ease;
+    }
+
+    .nav-item:hover .chevron-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Categories Dropdown Menu */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      inset-inline-start: 50%;
+      transform: translateX(calc(-50% * var(--dir-sign))) translateY(10px);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      box-shadow: var(--shadow-lg);
+      padding: 6px;
+      width: 140px;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 110;
+      transition: opacity 0.3s var(--transition-smooth), transform 0.3s var(--transition-smooth);
+    }
+
+    .nav-item:hover .dropdown-menu {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(calc(-50% * var(--dir-sign))) translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-family: var(--font-title);
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: var(--transition-fast);
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(220, 161, 90, 0.08);
+      color: var(--accent-gold);
+    }
+
+    /* Right Side Panel: Toggles & Button */
+    .right-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Dark Mode Toggle Button */
+    .theme-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      color: var(--text-primary);
+      overflow: hidden;
+      outline: none;
+    }
+
+    .theme-btn:hover {
+      background-color: var(--border-color);
+      transform: scale(1.05);
+    }
+
+    .theme-btn .sun-svg {
+      transition: transform 0.5s ease, opacity 0.3s ease;
+    }
+
+    .theme-btn .moon-svg {
+      position: absolute;
+      transition: transform 0.5s ease, opacity 0.3s ease;
+      transform: translateY(30px) rotate(90deg);
+      opacity: 0;
+    }
+
+    [data-theme="dark"] .theme-btn .sun-svg {
+      transform: translateY(-30px) rotate(-90deg);
+      opacity: 0;
+    }
+
+    [data-theme="dark"] .theme-btn .moon-svg {
+      transform: translateY(0) rotate(0);
+      opacity: 1;
+    }
+
+    /* RTL Layout Toggle Button */
+    .rtl-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      color: var(--text-primary);
+      overflow: hidden;
+      outline: none;
+      transition: var(--transition-smooth);
+    }
+
+    .rtl-btn:hover {
+      background-color: var(--border-color);
+      transform: scale(1.05);
+    }
+
+    .rtl-btn svg {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [dir="rtl"] .rtl-btn svg,
+    .rtl-btn.rtl svg {
+      transform: rotate(180deg);
+    }
+
+    /* Luxury Login Button - Styled to match reference design */
+    .login-btn {
+      background: var(--accent-gold);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-family: var(--font-title);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .login-btn:hover {
+      background-color: var(--accent-rose);
+      transform: translateY(-2px);
+    }
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+    .login-arrow {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2.5;
+      transition: transform 0.3s ease;
+    }
+
+    .login-btn:hover .login-arrow {
+      transform: translateX(calc(4px * var(--dir-sign)));
+    }
+
+    /* Hamburger Toggle Button */
+    .mobile-menu-trigger {
+      display: none;
+      background: transparent;
+      border: none;
+      width: 44px;
+      height: 44px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1001;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .hamburger-line {
+      width: 20px;
+      height: 2px;
+      background-color: var(--text-primary);
+      border-radius: 2px;
+      transition: var(--transition-smooth);
+    }
+
+    .mobile-menu-trigger.open .hamburger-line:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobile-menu-trigger.open .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-trigger.open .hamburger-line:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ----------------------------------------------------
+       MOBILE SLIDE-OUT DRAWER
+       ---------------------------------------------------- */
+    .mobile-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .mobile-drawer-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 320px;
+      max-width: 85vw;
+      background-color: var(--bg-card);
+      z-index: 1000;
+      box-shadow: var(--shadow-lg);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      transition: var(--transition-smooth);
+      
+      inset-inline-start: 0;
+      transform: translateX(calc(-100% * var(--dir-sign)));
+    }
+
+    .mobile-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+    }
+
+    .drawer-close-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+
+    .drawer-close-btn:hover {
+      background-color: var(--border-color);
+    }
+
+    .drawer-close-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2.5;
+    }
+
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .drawer-nav-link {
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border-radius: 10px;
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .drawer-nav-link:hover,
+    .drawer-nav-link.active {
+      color: var(--accent-rose);
+      background-color: rgba(107, 35, 53, 0.06);
+    }
+
+    .drawer-category-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-inline-start: 16px;
+      border-inline-start: 1px dashed var(--border-color);
+      padding-inline-start: 12px;
+      display: none;
+    }
+
+    .drawer-category-group.open {
+      display: flex;
+    }
+
+    .drawer-sub-link {
+      padding: 8px 12px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      border-radius: 6px;
+      transition: var(--transition-fast);
+    }
+
+    .drawer-sub-link:hover {
+      color: var(--accent-gold);
+      background-color: rgba(220, 161, 90, 0.08);
+    }
+
+    .drawer-footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .drawer-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    /* Toast Notifications styling */
+    .toast-notif {
+      position: fixed;
+      bottom: 96px;
+      inset-inline-end: 30px;
+      background-color: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent-gold);
+      padding: 14px 24px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+      font-weight: 600;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .toast-notif.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ----------------------------------------------------
+       HOME 2 UNIQUE STYLES
+       ---------------------------------------------------- */
+    .h2-hero {
+      position: relative;
+      height: 90vh;
+      background: linear-gradient(rgba(34, 22, 23, 0.6), rgba(34, 22, 23, 0.7)), url('images/home2_tour.png') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #FFFFFF;
+      margin-bottom: 80px;
+    }
+
+    [data-theme="dark"] .h2-hero {
+      background: linear-gradient(rgba(24, 17, 18, 0.8), rgba(24, 17, 18, 0.85)), url('images/home2_tour.png') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .h2-hero-content {
+      max-width: 800px;
+      padding: 0 24px;
+    }
+
+    .h2-hero-content h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+      font-family: var(--font-title);
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .h2-hero-content p {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 30px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      line-height: 1.6;
+    }
+
+
+    .h2-hero-actions {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Section 2: Interactive Ingredient Sourcing Map */
+    .map-section {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .map-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
+
+    .map-section p {
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+
+    .map-container {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 60px;
+      align-items: center;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .map-graphic {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .map-graphic img {
+      width: 100%;
+      display: block;
+      opacity: 0.85;
+    }
+
+    .map-pin {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background-color: var(--accent-gold);
+      border: 3px solid #FFFFFF;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-pin:hover {
+      transform: scale(1.2);
+      background-color: var(--accent-rose);
+    }
+
+    .map-pin::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid var(--accent-gold);
+      animation: ping 1.5s infinite;
+    }
+
+    @keyframes ping {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2.5); opacity: 0; }
+    }
+
+    /* Pin positions */
+    .pin-vanilla { top: 75%; left: 60%; }
+    .pin-butter { top: 25%; left: 35%; }
+    .pin-cocoa { top: 45%; left: 45%; }
+
+    .map-details {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    [dir="rtl"] .map-details {
+      text-align: right;
+    }
+
+    .map-details h3 {
+      font-size: 1.6rem;
+      color: var(--accent-rose);
+    }
+
+    .map-details p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Section 3: Chef's Signature Tasting Board */
+    .tasting-section {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .tasting-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
+
+    .tasting-section p {
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+
+    .tasting-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .tasting-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-smooth);
+    }
+
+    .tasting-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-gold);
+    }
+
+    .tasting-img-wrapper {
+      height: 240px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .tasting-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-smooth);
+    }
+
+    .tasting-card:hover .tasting-img-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .tasting-info {
+      padding: 24px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    [dir="rtl"] .tasting-info {
+      text-align: right;
+    }
+
+    .tasting-info h3 {
+      font-size: 1.25rem;
+    }
+
+    .tasting-info p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Section 4: Baking Academy */
+    .academy-section {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+
+    .academy-img {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .academy-img img {
+      width: 100%;
+      display: block;
+    }
+
+    .academy-text {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .academy-text h2 {
+      font-size: 2.2rem;
+    }
+
+    .academy-text p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Section 5: Sourdough Rising Timeline */
+    .timeline-section {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .timeline-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+    }
+
+    .timeline-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .timeline-step-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 30px 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    }
+
+    .timeline-step-card:hover {
+      border-color: var(--accent-gold);
+    }
+
+    .timeline-hour {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent-gold);
+      font-family: var(--font-title);
+    }
+
+    .timeline-step-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .timeline-step-card p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+        /* Connectors */
+    .timeline-step-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -25px;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ECC772' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3Cpolyline points='12 5 19 12 12 19'%3E%3C/polyline%3E%3C/svg%3E") no-repeat center center;
+      background-size: contain;
+      opacity: 0.5;
+    }
+
+    [dir="rtl"] .timeline-step-card::after {
+      right: auto;
+      left: -25px;
+      transform: translateY(-50%) scaleX(-1);
+    }
+
+    .timeline-step-card:last-child::after {
+      display: none;
+    }
+
+    /* Section 6: Critics Accordion */
+    .critics-section {
+      max-width: 900px;
+      margin: 0 auto 80px;
+      text-align: center;
+    }
+
+    .critics-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+    }
+
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: left;
+    }
+
+    [dir="rtl"] .accordion {
+      text-align: right;
+    }
+
+    .accordion-item {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 20px 24px;
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      outline: none;
+    }
+
+    .accordion-trigger svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2.5;
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-content {
+      padding: 0 24px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .accordion-item.open .accordion-trigger svg {
+      transform: rotate(180deg);
+    }
+
+    .accordion-item.open .accordion-content {
+      max-height: 200px;
+      padding: 0 24px 20px;
+      transition: max-height 0.3s cubic-bezier(1, 0, 1, 0), padding 0.3s ease;
+    }
+
+    /* Section 7: Tasting CTA */
+    .tasting-booking-cta {
+      background-color: var(--bg-card);
+      border: 2px dashed var(--accent-gold);
+      border-radius: 24px;
+      padding: 60px 40px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 80px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tasting-booking-cta h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .tasting-booking-cta p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+
+    /* ----------------------------------------------------
+       FOOTER SECTION
+       ---------------------------------------------------- */
+    footer {
+      background-color: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 60px 0 30px;
+      margin-top: auto; /* Pushes footer to bottom if page content is short */
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-col h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: capitalize;
+      letter-spacing: 0.02em;
+      position: relative;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 32px;
+      height: 3px;
+      background-color: var(--accent-gold);
+      border-radius: 2px;
+    }
+
+    [dir="rtl"] .footer-col h3::after {
+      left: auto;
+      right: 0;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-primary);
+    }
+
+    .footer-logo .logo-svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .footer-logo-text {
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .footer-social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: var(--transition-fast);
+    }
+
+    .footer-social-btn:hover {
+      background-color: var(--accent-rose);
+      border-color: var(--accent-rose);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    .footer-social-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links-item a {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      transition: var(--transition-fast);
+      display: inline-block;
+    }
+
+    .footer-links-item a:hover {
+      color: var(--accent-gold);
+      transform: translateX(calc(4px * var(--dir-sign)));
+    }
+
+    .footer-divider {
+      border: 0;
+      border-top: 1px dashed var(--border-color);
+      margin-bottom: 24px;
+    }
+
+    /* Newsletter form styles */
+    .footer-sub-form {
+      display: flex;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .footer-sub-input {
+      flex-grow: 1;
+      height: 44px;
+      padding: 0 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .footer-sub-input:focus {
+      border-color: var(--accent-rose);
+    }
+
+    .footer-sub-btn {
+      background-color: var(--accent-gold);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .footer-sub-btn:hover {
+      background-color: var(--accent-rose);
+      transform: translateY(-2px);
+    }
+
+    .footer-sub-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-bottom-links a:hover {
+      color: var(--accent-rose);
+    }
+
+    /* Responsive adjustments for footer and layouts */
+    /* Tablet Landscape / Laptop Small (1024px and below) */
+    @media (max-width: 1024px) {
+      .nav-menu {
+        display: none;
+      }
+      .mobile-menu-trigger {
+        display: flex;
+      }
+      .navbar {
+        height: 72px;
+      }
+      header .theme-btn,
+      header .rtl-btn,
+      header .login-btn {
+        display: none;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+      .h2-hero-content h1 {
+        font-size: 3rem;
+      }
+      .map-container {
+        flex-direction: column;
+        gap: 40px;
+      }
+      .tasting-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .academy-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .timeline-steps {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .timeline-step-card::after {
+        display: none;
+      }
+    }
+
+    /* Tablet Portrait (768px and below) */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+      .h2-hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        width: 100%;
+        max-width: 320px;
+        margin: 20px auto 0;
+      }
+      .h2-hero-actions a {
+        width: 100% !important;
+        margin: 0 !important;
+      }
+    }
+
+    /* Mobile Large (480px and below) */
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 12px;
+      }
+      .logo-text {
+        font-size: 1.0rem;
+      }
+      .logo-svg {
+        width: 26px;
+        height: 26px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .footer-col h3 {
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+      .footer-bottom-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .h2-hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .timeline-steps {
+        grid-template-columns: 1fr;
+      }
+      .mobile-drawer {
+        width: 100%;
+        max-width: 100vw;
+      }
+    }
+
+    /* Mobile Small (320px and below) */
+    @media (max-width: 320px) {
+      .container {
+        padding: 0 8px;
+      }
+      .logo-text {
+        font-size: 1.1rem;
+      }
+      .logo-svg {
+        width: 30px;
+        height: 30px;
+      }
+      .footer-sub-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .footer-sub-btn {
+        width: 100%;
+        height: 40px;
+      }
+    }
+
+    /* Floating Action Button (FAB) */
+    .logo-fab {
+      position: fixed;
+      bottom: 96px;
+      inset-inline-end: 30px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: var(--bg-card);
+      border: 2px solid var(--accent-gold);
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+      outline: none;
+      opacity: 0;
+      transform: translateY(20px) scale(0.8);
+      pointer-events: none;
+    }
+
+    .logo-fab.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .logo-fab:hover {
+      transform: translateY(-5px) scale(1.1) rotate(8deg);
+      background-color: var(--bg-primary);
+      border-color: var(--accent-rose);
+    }
+
+    .fab-logo-svg {
+      width: 32px;
+      height: 32px;
+      pointer-events: none;
+    }
+
+    /* Premium Styled Submit/CTA Button */
+    .submit-btn {
+      background-color: var(--accent-gold);
+      color: #FFFFFF !important;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition-smooth);
+    }
+
+    .submit-btn:hover {
+      background-color: var(--accent-rose);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ----------------------------------------------------
+       HEADER & NAVIGATION
+       ---------------------------------------------------- -->
+  <header>
+    <div class="container navbar">
+      
+      <!-- Left side: Creative Cake Logo -->
+      <a href="index.html" class="logo-container" id="logoLink">
+        <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer Golden Crest Circles -->
+          <circle cx="50" cy="50" r="44" stroke="var(--accent-gold)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6" />
+          <circle cx="50" cy="50" r="40" stroke="var(--accent-gold)" stroke-width="1.5" />
+          <circle cx="50" cy="50" r="37" stroke="var(--accent-gold)" stroke-width="0.8" stroke-dasharray="1 2" opacity="0.8" />
+          
+          <!-- Crest Wreath / Foliage Leaves -->
+          <path d="M22 55 C22 35, 30 25, 43 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+          <path d="M78 55 C78 35, 70 25, 57 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+          <!-- Wreath Leaf Details -->
+          <path d="M26 42 Q23 38 27 35 Q29 38 26 42" fill="var(--accent-gold)" />
+          <path d="M33 32 Q30 28 34 25 Q36 28 33 32" fill="var(--accent-gold)" />
+          <path d="M74 42 Q77 38 73 35 Q71 38 74 42" fill="var(--accent-gold)" />
+          <path d="M67 32 Q70 28 66 25 Q64 28 67 32" fill="var(--accent-gold)" />
+
+          <!-- Two-Tier Luxury Cake Silhouette -->
+          <!-- Base Tier -->
+          <path d="M32 64 C32 60, 35 58, 40 58 H60 C65 58, 68 60, 68 64 V72 H32 Z" fill="var(--accent-rose)" stroke="var(--text-primary)" stroke-width="1.5" />
+          <!-- Top Tier -->
+          <path d="M38 48 C38 45, 40 43, 44 43 H56 C60 43, 62 45, 62 48 V58 H38 Z" fill="var(--accent-gold)" stroke="var(--text-primary)" stroke-width="1.5" />
+          
+          <!-- Cake Decorative Frosting / Drips -->
+          <!-- Top Tier Swags -->
+          <path d="M38 48 Q44 51 50 48 Q56 51 62 48" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+          <!-- Base Tier Swags -->
+          <path d="M32 64 Q41 68 50 64 Q59 68 68 64" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+          
+          <!-- Lit Candle / Stem on Top -->
+          <line x1="50" y1="38" x2="50" y2="32" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" />
+          
+          <!-- Star / Sparkle Flame on Top -->
+          <path d="M50 22 L52 27 L57 28 L53 31 L54 36 L50 33 L46 36 L47 31 L43 28 L48 27 Z" fill="var(--accent-gold)" />
+          
+          <!-- Magic Sparkle Dots -->
+          <circle cx="31" cy="39" r="1.5" fill="var(--accent-gold)" />
+          <circle cx="69" cy="42" r="1.5" fill="var(--accent-rose)" />
+          <circle cx="50" cy="17" r="1.8" fill="var(--accent-gold)" />
+        </svg>
+        <span class="logo-text">LUXE BAKES</span>
+      </a>
+
+      <!-- Center: Menu Links (10 items) -->
+      <nav>
+        <ul class="nav-menu" id="desktopNavMenu">
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link active dropdown-toggle" id="homeLink">
+              Home
+              <svg class="chevron-icon" viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="dropdown-menu">
+              <a href="Home 1.html" class="dropdown-item"><strong>Home 1</strong></a>
+              <a href="Home 2.html" class="dropdown-item"><strong>Home 2</strong></a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a href="categories.html" class="nav-link" id="categoriesLink">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a href="fresh-bakes.html" class="nav-link">Fresh Bakes</a>
+          </li>
+          <li class="nav-item">
+            <a href="desserts.html" class="nav-link">Desserts</a>
+          </li>
+          <li class="nav-item">
+            <a href="cake-gallery.html" class="nav-link">Cake Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a href="special-occasions.html" class="nav-link">Special Occasions</a>
+          </li>
+          <li class="nav-item">
+            <a href="offers.html" class="nav-link">Offers</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact Us</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right Side: Dark Mode, RTL, and Login -->
+      <div class="right-actions">
+        <!-- Dark Mode Toggle Button -->
+        <button class="theme-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
+          <svg class="sun-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- LTR/RTL Toggle Button -->
+        <button class="rtl-btn" id="rtlToggleBtn" aria-label="Toggle Layout Direction" title="Toggle Left-to-Right / Right-to-Left">
+          <i class="fa-solid fa-right-left"></i>
+        </button>
+
+        <!-- Login Button -->
+        <a href="login.html" class="login-btn" id="loginBtn" title="Account Login">
+          <span>Login</span>
+          <svg class="login-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <!-- Hamburger Icon (collapsed navigation) -->
+        <button class="mobile-menu-trigger" id="mobileMenuTrigger" aria-label="Toggle Mobile Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ----------------------------------------------------
+       MOBILE DRAWER SLIDEOUT & OVERLAY
+       ---------------------------------------------------- -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="drawer-header">
+      <div class="logo-container" style="cursor: default;">
+        <span class="logo-text" style="font-size: 1.45rem;">Luxe Bakes</span>
+      </div>
+      <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <nav class="drawer-nav" id="drawerNavLinks">
+      <div>
+        <a href="#" class="drawer-nav-link active" id="drawerHomeToggle">
+          Home
+          <svg class="chevron-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
+        <div class="drawer-category-group" id="drawerHomeGroup">
+          <a href="Home 1.html" class="drawer-sub-link">Home 1</a>
+          <a href="Home 2.html" class="drawer-sub-link">Home 2</a>
+        </div>
+      </div>
+      <a href="about.html" class="drawer-nav-link">About Us</a>
+      <a href="categories.html" class="drawer-nav-link" id="drawerCategoriesLink">Categories</a>
+      <a href="fresh-bakes.html" class="drawer-nav-link">Fresh Bakes</a>
+      <a href="desserts.html" class="drawer-nav-link">Desserts</a>
+      <a href="cake-gallery.html" class="drawer-nav-link">Cake Gallery</a>
+      <a href="special-occasions.html" class="drawer-nav-link">Special Occasions</a>
+      <a href="offers.html" class="drawer-nav-link">Offers</a>
+      <a href="contact.html" class="drawer-nav-link">Contact Us</a>
+    </nav>
+    
+    <div class="drawer-footer">
+      <div class="drawer-actions">
+        <!-- Mobile Dark Mode Toggle Button -->
+        <button class="theme-btn" id="mobileThemeToggleBtn" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
+          <svg class="sun-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile LTR/RTL Toggle Button -->
+        <button class="rtl-btn" id="mobileRtlToggleBtn" aria-label="Toggle Layout Direction" title="Toggle Left-to-Right / Right-to-Left">
+          <i class="fa-solid fa-right-left"></i>
+        </button>
+      </div>
+      <a href="login.html" class="login-btn" style="width: 100%; justify-content: center;" id="mobileLoginBtn">
+        <span>Login</span>
+        <svg class="login-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ====================================================
+       SECTION 1: EDITORIAL PARALLAX HERO
+       ==================================================== -->
+  <section class="h2-hero">
+    <div class="h2-hero-content">
+      <span class="h2-hero-tag" style="color: var(--accent-gold); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.15em; text-transform: uppercase;">Est. 1912</span>
+      <h1>Bespoke Gastronomy &amp; Baking Craft</h1>
+      <p>Step inside our classical bakery lab where traditional sourdough fermentations and museum-quality celebratory cakes are created daily.</p>
+      <div class="h2-hero-actions">
+        <a href="bakery-menu.html" class="login-btn" style="width: auto;">Explore Our Menu</a>
+        <a href="about.html" class="theme-btn" style="width: auto; border-radius: 6px; padding: 0 20px; font-family: var(--font-title); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; justify-content: center; color: #FFFFFF; border-color: #FFFFFF;">Our Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 2: INTERACTIVE INGREDIENT SOURCING MAP
+       ==================================================== -->
+  <section class="container map-section">
+    <h2>Interactive Sourcing Map</h2>
+    <p>Select the pins on our ingredient map to discover where we source our organic baking ingredients.</p>
+    
+    <div class="map-container">
+      <div class="map-graphic">
+        <!-- Reusing lounge interior as placeholder maps layout -->
+        <img src="images/home2_tour.png" alt="Luxe Bakes interior map background">
+        <!-- Interactive pins -->
+        <div class="map-pin pin-butter" onclick="selectIngredient('butter')" title="French Butter"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v6H4z" /><path d="M4 11l4-5h12l-4 5" /><path d="M20 6v5" /></svg></div>
+        <div class="map-pin pin-cocoa" onclick="selectIngredient('cocoa')" title="Belgian Cocoa"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="11" rx="2" ry="2" /><path d="M3 10V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5" /><path d="M8 3v7 M16 3v7 M3 6h18 M8 10v11 M16 10v11 M3 15h18" /></svg></div>
+        <div class="map-pin pin-vanilla" onclick="selectIngredient('vanilla')" title="Madagascar Vanilla"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12" /><path d="M12 12c-3 0-6-2-6-6 0 4 3 6 6 6z" /><path d="M12 14c3 0 6-2 6-6 0 4-3 6-6 6z" /></svg></div>
+      </div>
+      
+      <div class="map-details" id="mapDetailsBox">
+        <span class="section-tag" id="ingTag" style="color: var(--accent-gold); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em;">Dairy Sourcing</span>
+        <h3 id="ingTitle">Chump Grass-Fed Butter</h3>
+        <p id="ingDesc">Sourced directly from historical dairy cooperatives in Normandy, France. This grass-fed churned butter holds an 84% butterfat content, providing our laminated croissants with flaky layers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 3: CHEF'S SIGNATURE TASTING BOARD
+       ==================================================== -->
+  <section class="container tasting-section">
+    <h2>The Chef's Signature Tasting Board</h2>
+    <p>Discover three of our most celebrated baking creations, hand-sculpted in our kitchen daily.</p>
+    
+    <div class="tasting-grid">
+      <!-- 1 -->
+      <div class="tasting-card">
+        <div class="tasting-img-wrapper">
+          <img src="images/home2_hero.png" alt="Multi-tiered signature cake">
+        </div>
+        <div class="tasting-info">
+          <span class="section-tag" style="color: var(--accent-gold); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em;">Celebration Hero</span>
+          <h3>Gold Sovereign Cake</h3>
+          <p>Scraped Madagascar vanilla sponge tiered with white chocolate mousse and hand-applied 24k gold foil leaf accents.</p>
+        </div>
+      </div>
+      <!-- 2 -->
+      <div class="tasting-card">
+        <div class="tasting-img-wrapper">
+          <img src="images/abt_ingredients.png" alt="Artisan pastries and sourdough boules">
+        </div>
+        <div class="tasting-info">
+          <span class="section-tag" style="color: var(--accent-gold); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em;">Baker's Pride</span>
+          <h3>Normandy Sourdough</h3>
+          <p>Kneaded with stone-milled heritage wheat flour, hydrated at 80%, and double-baked on stone decks for a rich caramelized crust.</p>
+        </div>
+      </div>
+      <!-- 3 -->
+      <div class="tasting-card">
+        <div class="tasting-img-wrapper">
+          <img src="images/off_specials.png" alt="Mirror glaze chocolate pastry">
+        </div>
+        <div class="tasting-info">
+          <span class="section-tag" style="color: var(--accent-gold); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em;">Confectionery Art</span>
+          <h3>Dark Mousse Dome</h3>
+          <p>Glaçage miroir chocolate dome layered with 72% Belgian dark cocoa ganache and salt butterscotch core.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 4: BAKING ACADEMY & COURSES
+       ==================================================== -->
+  <section class="container academy-section">
+    <div class="academy-text">
+      <span class="section-tag" style="color: var(--accent-gold); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em;">Professional Masterclasses</span>
+      <h2>Luxe Baking Academy</h2>
+      <p>Become a pastry expert in our culinary workshops. Our master boulangers teach the exact chemistry of yeast hydration, temperature control, and flaky lamination.</p>
+      <p>Classes include individual workstations, professional baking materials, and an invite to our private graduation cocktail mixer.</p>
+      <button class="login-btn" style="width: fit-content;" onclick="showToast('Loading Baking Academy Schedules...')">Explore Classes</button>
+    </div>
+    <div class="academy-img">
+      <img src="images/home2_academy.png" alt="Luxe Bakes master baking team teaching courses">
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 5: SOURDOUGH RISING TIMELINE
+       ==================================================== -->
+  <section class="container timeline-section">
+    <h2>Our Sourdough Fermentation Timeline</h2>
+    <div class="timeline-steps">
+      <!-- Step 1 -->
+      <div class="timeline-step-card">
+        <span class="timeline-hour">0 Hours</span>
+        <h3>Starter Mix</h3>
+        <p>Activating our natural wild yeast culture starter with pure stone-milled wheat flour.</p>
+      </div>
+      <!-- Step 2 -->
+      <div class="timeline-step-card">
+        <span class="timeline-hour">8 Hours</span>
+        <h3>Autolyse Rise</h3>
+        <p>Slowly hydrating dough sheets to naturally relax gluten bonds without additives.</p>
+      </div>
+      <!-- Step 3 -->
+      <div class="timeline-step-card">
+        <span class="timeline-hour">16 Hours</span>
+        <h3>Cold Ferment</h3>
+        <p>Resting dough tubs at 4°C to release rich, complex lactic acid flavor profiles.</p>
+      </div>
+      <!-- Step 4 -->
+      <div class="timeline-step-card">
+        <span class="timeline-hour">24 Hours</span>
+        <h3>Stone Bake</h3>
+        <p>Baking on hot deck plates with steam injections for a crisp mahogany outer crust.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 6: CRITICS REVIEWS ACCORDION
+       ==================================================== -->
+  <section class="container critics-section">
+    <h2>What Food Critics Say</h2>
+    <div class="accordion">
+      <!-- Item 1 -->
+      <div class="accordion-item open">
+        <button class="accordion-trigger" onclick="toggleFaq(this)">
+          <span>"An architectural marvel of laminated pastries" — Gastronomy Journal</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="accordion-content">
+          Luxe Bakes sets the absolute standard for buttery lamination. Each croissant breaks apart into dozens of tissue-thin golden leaves, proving their dedication to French grass-fed butter standards.
+        </div>
+      </div>
+      <!-- Item 2 -->
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleFaq(this)">
+          <span>"The ultimate destination for custom celebratory art" — Luxury Living</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="accordion-content">
+          Marcus Vance doesn't simply decorate cakes; he builds edible sculptures. The gold-leaf application and realistic sugar florals on their tiered cakes are unmatched in the region.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECTION 7: TASTING CTA
+       ==================================================== -->
+  <section class="container">
+    <div class="tasting-booking-cta">
+      <h2>Reserve a Private Wedding Cake Tasting Suite</h2>
+      <p>Schedule a 45-minute private cake tasting consultation in our lounge. Sample 6 luxury cake sponges, custom creams, and fresh fruit reductions while planning with our decorators.</p>
+      <button class="submit-btn" style="margin: 0 auto;" onclick="showToast('Redirecting to Private Tasting Scheduler...')">Schedule Tasting Consultation</button>
+    </div>
+  </section>
+
+  <!-- ----------------------------------------------------
+       FOOTER
+       ---------------------------------------------------- -->
+  <footer>
+    <div class="container footer-grid">
+      <!-- Col 1: Brand & Socials -->
+      <div class="footer-col">
+        <a href="index.html" class="footer-logo">
+          <!-- Same Crested Cake Logo as Navbar -->
+          <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer Golden Crest Circles -->
+            <circle cx="50" cy="50" r="44" stroke="var(--accent-gold)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6" />
+            <circle cx="50" cy="50" r="40" stroke="var(--accent-gold)" stroke-width="1.5" />
+            <circle cx="50" cy="50" r="37" stroke="var(--accent-gold)" stroke-width="0.8" stroke-dasharray="1 2" opacity="0.8" />
+            
+            <!-- Crest Wreath / Foliage Leaves -->
+            <path d="M22 55 C22 35, 30 25, 43 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+            <path d="M78 55 C78 35, 70 25, 57 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+            <!-- Wreath Leaf Details -->
+            <path d="M26 42 Q23 38 27 35 Q29 38 26 42" fill="var(--accent-gold)" />
+            <path d="M33 32 Q30 28 34 25 Q36 28 33 32" fill="var(--accent-gold)" />
+            <path d="M74 42 Q77 38 73 35 Q71 38 74 42" fill="var(--accent-gold)" />
+            <path d="M67 32 Q70 28 66 25 Q64 28 67 32" fill="var(--accent-gold)" />
+
+            <!-- Two-Tier Luxury Cake Silhouette -->
+            <!-- Base Tier -->
+            <path d="M32 64 C32 60, 35 58, 40 58 H60 C65 58, 68 60, 68 64 V72 H32 Z" fill="var(--accent-rose)" stroke="var(--text-primary)" stroke-width="1.5" />
+            <!-- Top Tier -->
+            <path d="M38 48 C38 45, 40 43, 44 43 H56 C60 43, 62 45, 62 48 V58 H38 Z" fill="var(--accent-gold)" stroke="var(--text-primary)" stroke-width="1.5" />
+            
+            <!-- Cake Decorative Frosting / Drips -->
+            <!-- Top Tier Swags -->
+            <path d="M38 48 Q44 51 50 48 Q56 51 62 48" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+            <!-- Base Tier Swags -->
+            <path d="M32 64 Q41 68 50 64 Q59 68 68 64" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+            
+            <!-- Lit Candle / Stem on Top -->
+            <line x1="50" y1="38" x2="50" y2="32" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" />
+            
+            <!-- Star / Sparkle Flame on Top -->
+            <path d="M50 22 L52 27 L57 28 L53 31 L54 36 L50 33 L46 36 L47 31 L43 28 L48 27 Z" fill="var(--accent-gold)" />
+            
+            <!-- Magic Sparkle Dots -->
+            <circle cx="31" cy="39" r="1.5" fill="var(--accent-gold)" />
+            <circle cx="69" cy="42" r="1.5" fill="var(--accent-rose)" />
+            <circle cx="50" cy="17" r="1.8" fill="var(--accent-gold)" />
+          </svg>
+          <span class="footer-logo-text">Luxe Bakes</span>
+        </a>
+        <p class="footer-desc">
+          Licensed, registered, and organic artisanal bakery &amp; confectionery. Fresh daily deck-oven bakes, custom celebration cakes, and pastry masterclasses. Available for events.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="#" class="footer-social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href="#" class="footer-social-btn" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22c-.6 0-1.2-.3-1.5-.8L5.3 19c-.8-1.5-1.3-3.2-1.3-5 0-5 4-9 9-9s9 4 9 9-4 9-9 9c-1.3 0-2.5-.3-3.7-.8l-1.3.8z"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Bakery Services -->
+      <div class="footer-col">
+        <h3>Bakery Services</h3>
+        <ul class="footer-links">
+          <li class="footer-links-item"><a href="#">Custom Cake Design</a></li>
+          <li class="footer-links-item"><a href="#">Wedding Consultations</a></li>
+          <li class="footer-links-item"><a href="#">Catering &amp; Events</a></li>
+          <li class="footer-links-item"><a href="#">Baking Masterclasses</a></li>
+          <li class="footer-links-item"><a href="#">Gift Cards &amp; Hampers</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Resources & Info -->
+      <div class="footer-col">
+        <h3>Resources &amp; Info</h3>
+        <ul class="footer-links">
+          <li class="footer-links-item"><a href="#">About Our Bakers</a></li>
+          <li class="footer-links-item"><a href="#">Allergen &amp; Ingredients</a></li>
+          <li class="footer-links-item"><a href="#">Delivery Information</a></li>
+          <li class="footer-links-item"><a href="#">Baking Blog &amp; Recipes</a></li>
+          <li class="footer-links-item"><a href="#">Customer Reviews</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Sweet News & Offers -->
+      <div class="footer-col">
+        <h3>Sweet News &amp; Offers</h3>
+        <p class="footer-desc">
+          Subscribe for baking tips, fresh product drops &amp; special birthday cake deals.
+        </p>
+        <form class="footer-sub-form" onsubmit="event.preventDefault(); showToast('Subscribed to newsletter!');">
+          <input type="email" class="footer-sub-input" placeholder="Enter your email" required aria-label="Email address">
+          <button type="submit" class="footer-sub-btn" aria-label="Subscribe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <hr class="footer-divider">
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Luxe Bakes &amp; Cake Shop. All rights reserved. Baking love daily.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookies Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Wrapper -->
+  <div class="toast-notif" id="toastNotif">
+    <span id="toastIcon" style="display: flex; align-items: center; justify-content: center;"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: var(--accent-gold);"><path d="M12 2l2.4 6.4L20.8 10.8L14.4 13.2L12 19.6L9.6 13.2L3.2 10.8L9.6 8.4Z" /></svg></span>
+    <span id="toastMsg">Action completed!</span>
+  </div>
+
+  <!-- ----------------------------------------------------
+       INTERACTIVE JAVASCRIPT
+       ---------------------------------------------------- -->
+  <script>
+    // Cache DOM Elements
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const mobileThemeToggleBtn = document.getElementById('mobileThemeToggleBtn');
+    const rtlToggleBtn = document.getElementById('rtlToggleBtn');
+    const mobileRtlToggleBtn = document.getElementById('mobileRtlToggleBtn');
+    const loginBtn = document.getElementById('loginBtn');
+    const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+    
+    const mobileMenuTrigger = document.getElementById('mobileMenuTrigger');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileDrawerOverlay = document.getElementById('mobileDrawerOverlay');
+    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+    const drawerNavLinks = document.getElementById('drawerNavLinks');
+    
+    const logoLink = document.getElementById('logoLink');
+    const categoriesLink = document.getElementById('categoriesLink');
+    const toastNotif = document.getElementById('toastNotif');
+    const toastMsg = document.getElementById('toastMsg');
+    
+    const desktopLinks = document.querySelectorAll('#desktopNavMenu .nav-link');
+    const drawerLinks = document.querySelectorAll('#drawerNavLinks .drawer-nav-link');
+
+    /* ----------------------------------------------------
+       INGREDIENT MAP CONTROLLER
+       ---------------------------------------------------- */
+    const ingredients = {
+      butter: {
+        tag: 'Dairy Sourcing',
+        title: 'Chump Grass-Fed Butter',
+        desc: 'Sourced directly from historical dairy cooperatives in Normandy, France. This grass-fed churned butter holds an 84% butterfat content, providing our laminated croissants with flaky layers.'
+      },
+      cocoa: {
+        tag: 'Cocoa Sourcing',
+        title: 'Single-Origin Belgian Chocolate',
+        desc: 'Harvested from sustainable organic farms in Ecuador and refined in Brussels. We select 72% dark chocolate chips to create our glossy glazes and dense chocolate cake fudge.'
+      },
+      vanilla: {
+        tag: 'Spice Sourcing',
+        title: 'Madagascar Bourbon Vanilla',
+        desc: 'Scraped directly from hand-pollinated orchid pods in Sava, Madagascar. Infuses our buttercreams and sponges with a rich woodsy floral aroma.'
+      }
+    };
+
+    function selectIngredient(key) {
+      const data = ingredients[key];
+      document.getElementById('ingTag').innerText = data.tag;
+      document.getElementById('ingTitle').innerText = data.title;
+      document.getElementById('ingDesc').innerText = data.desc;
+      showToast(`Selected ${data.title} details`);
+    }
+    window.selectIngredient = selectIngredient;
+
+    // Toggle critics accordion
+    function toggleFaq(button) {
+      const item = button.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+      
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    }
+    window.toggleFaq = toggleFaq;
+
+    /* ----------------------------------------------------
+       THEME CONTROLLER (LIGHT/DARK)
+       ---------------------------------------------------- */
+    function initTheme() {
+      const savedTheme = localStorage.getItem('bakery-theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
+      }
+    }
+
+    function setTheme(theme) {
+      htmlEl.setAttribute('data-theme', theme);
+      localStorage.setItem('bakery-theme', theme);
+    }
+
+    function toggleThemeAction() {
+      const currentTheme = htmlEl.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+      showToast(`Switched to ${newTheme.toUpperCase()} theme`);
+    }
+    themeToggleBtn.addEventListener('click', toggleThemeAction);
+    mobileThemeToggleBtn.addEventListener('click', toggleThemeAction);
+
+    /* ----------------------------------------------------
+       LAYOUT DIRECTION CONTROLLER (LTR/RTL)
+       ---------------------------------------------------- */
+    function initDirection() {
+      const savedDir = localStorage.getItem('bakery-dir');
+      if (savedDir) {
+        setDirection(savedDir);
+      } else {
+        setDirection('ltr');
+      }
+    }
+
+    function setDirection(dir) {
+      htmlEl.setAttribute('dir', dir);
+      localStorage.setItem('bakery-dir', dir);
+      if (dir === 'rtl') {
+        rtlToggleBtn.classList.add('rtl');
+        mobileRtlToggleBtn.classList.add('rtl');
+      } else {
+        rtlToggleBtn.classList.remove('rtl');
+        mobileRtlToggleBtn.classList.remove('rtl');
+      }
+    }
+
+    function toggleDirectionAction() {
+      const currentDir = htmlEl.getAttribute('dir') || 'ltr';
+      const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+      setDirection(newDir);
+      showToast(`Switched layout to ${newDir.toUpperCase()}`);
+    }
+    rtlToggleBtn.addEventListener('click', toggleDirectionAction);
+    mobileRtlToggleBtn.addEventListener('click', toggleDirectionAction);
+
+    /* ----------------------------------------------------
+       MOBILE DRAWER CONTROLLER
+       ---------------------------------------------------- */
+    function openDrawer() {
+      mobileDrawer.classList.add('open');
+      mobileDrawerOverlay.classList.add('open');
+      mobileMenuTrigger.classList.add('open');
+      bodyEl.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      mobileDrawer.classList.remove('open');
+      mobileDrawerOverlay.classList.remove('open');
+      mobileMenuTrigger.classList.remove('open');
+      bodyEl.style.overflow = '';
+    }
+
+    mobileMenuTrigger.addEventListener('click', () => {
+      if (mobileDrawer.classList.contains('open')) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+
+    drawerCloseBtn.addEventListener('click', closeDrawer);
+    mobileDrawerOverlay.addEventListener('click', closeDrawer);
+
+
+    // Toggle home group inside mobile drawer
+    const drawerHomeToggle = document.getElementById('drawerHomeToggle');
+    const drawerHomeGroup = document.getElementById('drawerHomeGroup');
+    drawerHomeToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      drawerHomeGroup.classList.toggle('open');
+      const arrowIcon = drawerHomeToggle.querySelector('.chevron-icon');
+      if (drawerHomeGroup.classList.contains('open')) {
+        arrowIcon.style.transform = 'rotate(180deg)';
+      } else {
+        arrowIcon.style.transform = '';
+      }
+    });
+
+    // Close drawer when a mobile link is clicked
+    document.querySelectorAll('.drawer-nav-link, .drawer-sub-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (link.id === 'drawerHomeToggle') return;
+        closeDrawer();
+      });
+    });
+
+    // Highlight active link when clicked (mock routing)
+    desktopLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.classList.contains('dropdown-toggle')) return;
+        desktopLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        showToast(`Navigated to: ${this.innerText}`);
+      });
+    });
+
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.id === 'drawerCategoriesToggle') return;
+        drawerLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        showToast(`Navigated to: ${this.innerText}`);
+      });
+    });
+
+    /* ----------------------------------------------------
+       LOGIN TRIGGERS
+       ---------------------------------------------------- */
+    
+
+    
+    
+
+    /* ----------------------------------------------------
+       TOAST ACTIONS
+       ---------------------------------------------------- */
+    let toastTimeout;
+    function showToast(message) {
+      toastMsg.innerText = message;
+      toastNotif.classList.add('show');
+      
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toastNotif.classList.remove('show');
+      }, 3000);
+    }
+    window.showToast = showToast;
+
+    // Initializations
+    initTheme();
+    initDirection();
+
+
+    // Logo FAB Scroll-to-Top Behavior
+    const logoFab = document.getElementById('logoFab');
+    if (logoFab) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          logoFab.classList.add('show');
+        } else {
+          logoFab.classList.remove('show');
+        }
+      });
+      logoFab.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  </script>
+
+  <!-- Floating Action Button (Logo FAB) -->
+  <button class="logo-fab" id="logoFab" title="Back to Top" aria-label="Back to Top">
+    <svg class="fab-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer Golden Crest Circles -->
+      <circle cx="50" cy="50" r="44" stroke="var(--accent-gold)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6" />
+      <circle cx="50" cy="50" r="40" stroke="var(--accent-gold)" stroke-width="1.5" />
+      <circle cx="50" cy="50" r="37" stroke="var(--accent-gold)" stroke-width="0.8" stroke-dasharray="1 2" opacity="0.8" />
+      
+      <!-- Crest Wreath / Foliage Leaves -->
+      <path d="M22 55 C22 35, 30 25, 43 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+      <path d="M78 55 C78 35, 70 25, 57 25" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+      
+      <!-- Tiny Accent Crest Berries / Dots -->
+      <path d="M26 42 Q23 38 27 35 Q29 38 26 42" fill="var(--accent-gold)" />
+      <path d="M33 32 Q30 28 34 25 Q36 28 33 32" fill="var(--accent-gold)" />
+      <path d="M74 42 Q77 38 73 35 Q71 38 74 42" fill="var(--accent-gold)" />
+      <path d="M67 32 Q70 28 66 25 Q64 28 67 32" fill="var(--accent-gold)" />
+      
+      <!-- Central Cake Structure -->
+      <!-- Tier 1 (Base - Rose/Burgundy) -->
+      <path d="M32 64 C32 60, 35 58, 40 58 H60 C65 58, 68 60, 68 64 V72 H32 Z" fill="var(--accent-rose)" stroke="var(--text-primary)" stroke-width="1.5" />
+      <!-- Tier 2 (Top - Champagne Gold) -->
+      <path d="M38 48 C38 45, 40 43, 44 43 H56 C60 43, 62 45, 62 48 V58 H38 Z" fill="var(--accent-gold)" stroke="var(--text-primary)" stroke-width="1.5" />
+      
+      <!-- Wavy Swag/Drape Piping Details -->
+      <path d="M38 48 Q44 51 50 48 Q56 51 62 48" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+      <path d="M32 64 Q41 68 50 64 Q59 68 68 64" fill="none" stroke="var(--text-primary)" stroke-width="1.2" />
+      
+      <!-- Candle & Spark/Flame -->
+      <line x1="50" y1="38" x2="50" y2="32" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M50 22 L52 27 L57 28 L53 31 L54 36 L50 33 L46 36 L47 31 L43 28 L48 27 Z" fill="var(--accent-gold)" />
+      
+      <!-- Tiny Decorative Star Dots -->
+      <circle cx="31" cy="39" r="1.5" fill="var(--accent-gold)" />
+      <circle cx="69" cy="42" r="1.5" fill="var(--accent-rose)" />
+      <circle cx="50" cy="17" r="1.8" fill="var(--accent-gold)" />
+    </svg>
+  </button>
+
+</body>
+</html>

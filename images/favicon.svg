@@ -1,0 +1,35 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Golden Crest Circles -->
+  <circle cx="50" cy="50" r="44" stroke="#D4AF37" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6" />
+  <circle cx="50" cy="50" r="40" stroke="#D4AF37" stroke-width="1.5" />
+  <circle cx="50" cy="50" r="37" stroke="#D4AF37" stroke-width="0.8" stroke-dasharray="1 2" opacity="0.8" />
+  
+  <!-- Crest Wreath / Foliage Leaves -->
+  <path d="M22 55 C22 35, 30 25, 43 25" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" fill="none" />
+  <path d="M78 55 C78 35, 70 25, 57 25" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" fill="none" />
+  
+  <!-- Tiny Accent Crest Berries / Dots -->
+  <path d="M26 42 Q23 38 27 35 Q29 38 26 42" fill="#D4AF37" />
+  <path d="M33 32 Q30 28 34 25 Q36 28 33 32" fill="#D4AF37" />
+  <path d="M74 42 Q77 38 73 35 Q71 38 74 42" fill="#D4AF37" />
+  <path d="M67 32 Q70 28 66 25 Q64 28 67 32" fill="#D4AF37" />
+  
+  <!-- Central Cake Structure -->
+  <!-- Tier 1 (Base - Rose/Burgundy) -->
+  <path d="M32 64 C32 60, 35 58, 40 58 H60 C65 58, 68 60, 68 64 V72 H32 Z" fill="#6B2335" stroke="#221617" stroke-width="1.5" />
+  <!-- Tier 2 (Top - Champagne Gold) -->
+  <path d="M38 48 C38 45, 40 43, 44 43 H56 C60 43, 62 45, 62 48 V58 H38 Z" fill="#D4AF37" stroke="#221617" stroke-width="1.5" />
+  
+  <!-- Wavy Swag/Drape Piping Details -->
+  <path d="M38 48 Q44 51 50 48 Q56 51 62 48" fill="none" stroke="#221617" stroke-width="1.2" />
+  <path d="M32 64 Q41 68 50 64 Q59 68 68 64" fill="none" stroke="#221617" stroke-width="1.2" />
+  
+  <!-- Candle & Spark/Flame -->
+  <line x1="50" y1="38" x2="50" y2="32" stroke="#221617" stroke-width="1.5" stroke-linecap="round" />
+  <path d="M50 22 L52 27 L57 28 L53 31 L54 36 L50 33 L46 36 L47 31 L43 28 L48 27 Z" fill="#D4AF37" />
+  
+  <!-- Tiny Decorative Star Dots -->
+  <circle cx="31" cy="39" r="1.5" fill="#D4AF37" />
+  <circle cx="69" cy="42" r="1.5" fill="#6B2335" />
+  <circle cx="50" cy="17" r="1.8" fill="#D4AF37" />
+</svg>
