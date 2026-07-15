@@ -499,8 +499,8 @@
       gap: 24px;
       transition: var(--transition-smooth);
       
-      inset-inline-start: 0;
-      transform: translateX(calc(-100% * var(--dir-sign)));
+      inset-inline-end: 0;
+      transform: translateX(calc(100% * var(--dir-sign)));
     }
 
     .mobile-drawer.open {
@@ -1690,6 +1690,22 @@
         </div>
       </div>
 
+      <!-- 1.2 Kids Birthday Collection -->
+      <div class="portfolio-card" data-category="birthday">
+        <div class="portfolio-img-wrapper">
+          <img src="images/gal_birthday_kids.png" alt="Whimsical children's birthday cake at Luxe Bakes">
+          <div class="portfolio-overlay">
+            <button class="portfolio-overlay-btn" onclick="showToast('Opening Kids Birthday Collection close-up')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h3>Kids Birthday Collection</h3>
+          <p>Whimsical pastel layers decorated with hand-sculpted 3D forest animals, miniature balloons, and sparkling stars.</p>
+        </div>
+      </div>
+
       <!-- 2. Wedding Collection -->
       <div class="portfolio-card" data-category="wedding">
         <div class="portfolio-img-wrapper">
@@ -1709,7 +1725,7 @@
       <!-- 3. Theme Cake Collection -->
       <div class="portfolio-card" data-category="theme">
         <div class="portfolio-img-wrapper">
-          <img src="images/gal_theme.png" alt="Antique telescope custom theme cake">
+          <img src="./images/Theme Cake Collection.jpg" alt="Antique telescope custom theme cake">
           <div class="portfolio-overlay">
             <button class="portfolio-overlay-btn" onclick="showToast('Opening Theme Cake close-up ')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
