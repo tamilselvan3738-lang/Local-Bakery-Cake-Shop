@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light" dir="ltr">
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -280,6 +280,15 @@
       transition: opacity 0.3s var(--transition-smooth), transform 0.3s var(--transition-smooth);
     }
 
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      inset-inline-start: 0;
+      width: 100%;
+      height: 8px;
+    }
+
     .nav-item:hover .dropdown-menu {
       display: flex;
       opacity: 1;
@@ -389,7 +398,7 @@
 
     /* Luxury Login Button - Styled to match reference design */
     .login-btn {
-      background: var(--accent-gold);
+      background: var(--accent-rose);
       color: #FFFFFF;
       border: none;
       border-radius: 6px;
@@ -408,7 +417,7 @@
     }
 
     .login-btn:hover {
-      background-color: var(--accent-rose);
+      background-color: var(--accent-gold);
       transform: translateY(-2px);
     }
 
@@ -1049,28 +1058,44 @@
 
     /* Section 7: Booking Form CTA */
     .occ-booking-cta {
-      background-color: var(--bg-card);
-      border: 2px dashed var(--accent-gold);
+      background: linear-gradient(135deg, var(--accent-rose), var(--accent-rose-hover));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
       border-radius: 24px;
       padding: 60px 40px;
       max-width: 900px;
       margin: 0 auto 80px;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-lg);
     }
 
     .occ-booking-cta h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       margin-bottom: 16px;
       text-align: center;
+      color: #FFFFFF;
     }
 
     .occ-booking-cta p {
       font-size: 1.05rem;
-      color: var(--text-secondary);
+      color: rgba(255, 255, 255, 0.9);
       max-width: 600px;
       margin: 0 auto 30px;
       line-height: 1.6;
       text-align: center;
+    }
+
+    .occ-booking-cta label {
+      color: rgba(255, 255, 255, 0.95) !important;
+    }
+
+    .occ-booking-cta .form-submit-btn {
+      background-color: var(--accent-gold);
+      color: #FFFFFF;
+    }
+
+    .occ-booking-cta .form-submit-btn:hover {
+      background-color: #FFFFFF;
+      color: var(--accent-rose);
     }
 
     .occ-booking-form {
@@ -1114,6 +1139,35 @@
 
     .form-input:focus {
       border-color: var(--accent-rose);
+    }
+
+    /* Custom high-contrast select drop-down arrow */
+    select.form-input {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236C595B' stroke-width='2.5'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      padding-inline-end: 40px;
+    }
+
+    [dir="rtl"] select.form-input,
+    .rtl select.form-input {
+      background-position: left 14px center;
+      padding-inline-start: 40px;
+      padding-inline-end: 14px;
+    }
+
+    [data-theme="dark"] select.form-input {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFFFFF' stroke-width='2.5'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    }
+
+    /* High-contrast Webkit calendar indicator in dark mode */
+    [data-theme="dark"] .form-input::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      cursor: pointer;
     }
 
     .form-submit-btn {
@@ -1750,6 +1804,9 @@
     <div class="container">
       <h1>Custom Event Catering</h1>
       <p>Elevate your special moments with our premium celebration cakes and dessert tables. From intimate baby showers to grand corporate events.</p>
+      <div style="margin-top: 24px;">
+        <a href="contact.html" class="login-btn" style="width: fit-content; display: inline-flex;">Book Now</a>
+      </div>
     </div>
   </section>
 

@@ -280,6 +280,15 @@
       transition: opacity 0.3s var(--transition-smooth), transform 0.3s var(--transition-smooth);
     }
 
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      inset-inline-start: 0;
+      width: 100%;
+      height: 8px;
+    }
+
     .nav-item:hover .dropdown-menu {
       display: flex;
       opacity: 1;
@@ -389,7 +398,7 @@
 
     /* Luxury Login Button - Styled to match reference design */
     .login-btn {
-      background: var(--accent-gold);
+      background: var(--accent-rose);
       color: #FFFFFF;
       border: none;
       border-radius: 6px;
@@ -408,7 +417,7 @@
     }
 
     .login-btn:hover {
-      background-color: var(--accent-rose);
+      background-color: var(--accent-gold);
       transform: translateY(-2px);
     }
 
@@ -1024,24 +1033,26 @@
 
     /* Section 7: Exclusive Deals Newsletter CTA */
     .offers-booking-cta {
-      background-color: var(--bg-card);
-      border: 2px dashed var(--accent-gold);
+      background: linear-gradient(135deg, var(--accent-rose), var(--accent-rose-hover));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
       border-radius: 24px;
       padding: 60px 40px;
       text-align: center;
       max-width: 900px;
       margin: 0 auto 80px;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-lg);
     }
 
     .offers-booking-cta h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       margin-bottom: 16px;
+      color: #FFFFFF;
     }
 
     .offers-booking-cta p {
       font-size: 1.05rem;
-      color: var(--text-secondary);
+      color: rgba(255, 255, 255, 0.9);
       max-width: 600px;
       margin: 0 auto 24px;
       line-height: 1.6;
@@ -1659,6 +1670,9 @@
     <div class="container">
       <h1>Luxe Bakery Coupons &amp; Offers</h1>
       <p>Save on your sweet indulgences. Copy promo codes below to redeem online, or display them in our boutique store to redeem at checkout.</p>
+      <div style="margin-top: 24px;">
+        <a href="#coupons" class="login-btn" style="width: fit-content; display: inline-flex;">Claim Offers</a>
+      </div>
     </div>
   </section>
 
@@ -1871,7 +1885,7 @@
       
       <form class="footer-sub-form" style="max-width: 500px; margin: 0 auto;" onsubmit="event.preventDefault(); showToast('Subscribed! Check your inbox for a 10% coupon code ');">
         <input type="email" class="footer-sub-input" placeholder="Enter your email address" required aria-label="Email address">
-        <button type="submit" class="footer-sub-btn" style="background-color: var(--accent-gold); color: #FFFFFF; font-family: var(--font-title); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px; width: auto; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition-fast);">
+        <button type="submit" class="footer-sub-btn" style="background-color: var(--accent-gold); color: #FFFFFF; font-family: var(--font-title); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px; width: auto; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; transition: var(--transition-fast);" onmouseover="this.style.backgroundColor='#FFFFFF'; this.style.color='var(--accent-rose)';" onmouseout="this.style.backgroundColor='var(--accent-gold)'; this.style.color='#FFFFFF';">
           Get 10% Off Code
         </button>
       </form>

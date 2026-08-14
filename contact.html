@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light" dir="ltr">
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -280,6 +280,15 @@
       transition: opacity 0.3s var(--transition-smooth), transform 0.3s var(--transition-smooth);
     }
 
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      inset-inline-start: 0;
+      width: 100%;
+      height: 8px;
+    }
+
     .nav-item:hover .dropdown-menu {
       display: flex;
       opacity: 1;
@@ -389,7 +398,7 @@
 
     /* Luxury Login Button - Styled to match reference design */
     .login-btn {
-      background: var(--accent-gold);
+      background: var(--accent-rose);
       color: #FFFFFF;
       border: none;
       border-radius: 6px;
@@ -408,7 +417,7 @@
     }
 
     .login-btn:hover {
-      background-color: var(--accent-rose);
+      background-color: var(--accent-gold);
       transform: translateY(-2px);
     }
 
@@ -1625,6 +1634,9 @@
     <div class="container">
       <h1>Contact Luxe Bakes</h1>
       <p>We invite you to visit our boutique cake shop or reach out to us online. Let's make your next celebration sweet and memorable.</p>
+      <div style="margin-top: 24px;">
+        <a href="#contact-form" class="login-btn" style="width: fit-content; display: inline-flex;">Find Us</a>
+      </div>
     </div>
   </section>
 
@@ -1688,84 +1700,12 @@
     </div>
   </section>
 
-  <!-- ====================================================
-       SECTION 3: ABOUT OUR BOUTIQUE (INTERIOR)
-       ==================================================== -->
-  <section class="container">
-    <div class="narrative-row">
-      <div class="narrative-text">
-        <span class="section-tag">Cozy Tea Room</span>
-        <h2>Step Inside Our French-Inspired Boutique</h2>
-        <p>Our Paris-styled bakery boutique offers a warm, cozy retreat for sweet tooths. Designed with marble counters, gold-rimmed displays, and comfortable seating, it is the perfect spot to enjoy freshly baked croissants, signature desserts, and gourmet espresso.</p>
-        <p>We bake in small batches throughout the day, filling the air with the rich, buttery aroma of fresh deck-oven creations. Come find your new favorite sweet spot.</p>
-      </div>
-      <div class="narrative-image">
-        <img src="images/bakery_interior.png" alt="Luxe Bakes Cozy Interior Storefront">
-      </div>
-    </div>
-  </section>
 
-  <!-- ====================================================
-       SECTION 4: OUR ARTISANAL KITCHEN (TEAM)
-       ==================================================== -->
-  <section class="container">
-    <div class="narrative-row reversed">
-      <div class="narrative-text">
-        <span class="section-tag">Master Pastry Chefs</span>
-        <h2>Meet Our Passionate Baking Team</h2>
-        <p>At Luxe Bakes, our master chefs turn baking into an art form. Combining years of classical French pastry training with creative modern design, our team handles everything from daily bread loaves to magnificent multi-tiered wedding cakes with delicate hand-sculpted frosting.</p>
-        <p>We pride ourselves on execution, using detailed piping, custom gold details, and organic ingredients to bake joy into every single slice.</p>
-      </div>
-      <div class="narrative-image">
-        <img src="images/bakery_team.png" alt="Pastry Chef decorating cake at Luxe Bakes">
-      </div>
-    </div>
-  </section>
-
-  <!-- ====================================================
-       SECTION 5: OUR FRESH BAKE PHILOSOPHY (BAKES)
-       ==================================================== -->
-  <section class="container">
-    <div class="philosophy-banner">
-      <h2>The Fresh Bake Philosophy</h2>
-      <p>We believe in the power of pure ingredients. That's why we source organic flour, locally churned butter, and fresh seasonal fruits for our bakes. No artificial preservatives, just classical sourdough fermentation and slow-rolled pastry layers.</p>
-      <button class="login-btn" style="margin: 0 auto; background: var(--accent-rose);" onclick="showToast('Baking Masterclasses Schedule Opening... ')">Explore Masterclasses</button>
-    </div>
-  </section>
-
-  <!-- ====================================================
-       SECTION 6: SIGNATURE OCCASIONS (GALLERY)
-       ==================================================== -->
-  <section class="container">
-    <div class="gallery-row">
-      <!-- Card 1: Custom Wedding Cakes -->
-      <div class="gallery-card">
-        <div class="gallery-img-wrapper">
-          <img src="images/signature_cake.png" alt="Signature Luxe Bakes Wedding Cake">
-        </div>
-        <div class="gallery-content">
-          <h3>Custom Celebration Cakes</h3>
-          <p>Schedule a personal wedding cake tasting and consultation. We work closely with you to design a show-stopping multi-tiered cake complete with sugar floral details, gold leaf detailing, and custom flavor pairings.</p>
-        </div>
-      </div>
-
-      <!-- Card 2: Tea Room Seating -->
-      <div class="gallery-card">
-        <div class="gallery-img-wrapper">
-          <img src="images/cafe_seating.png" alt="Cozy Cafe Seating at Luxe Bakes">
-        </div>
-        <div class="gallery-content">
-          <h3>Afternoon Tea Room</h3>
-          <p>Book a table in our chic cafe seating area. Treat yourself to our weekend Afternoon Tea experience, featuring a tiered display of sandwiches, scones, macarons, and warm seasonal pastries paired with fine loose-leaf teas.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ====================================================
        SECTION 7: FORM & MAP SPLIT
        ==================================================== -->
-  <section class="container">
+  <section class="container" id="contact-form">
     <div class="form-map-split">
       <!-- Contact Message Form -->
       <div class="contact-form-container">

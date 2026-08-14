@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light" dir="ltr">
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -280,6 +280,15 @@
       transition: opacity 0.3s var(--transition-smooth), transform 0.3s var(--transition-smooth);
     }
 
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      inset-inline-start: 0;
+      width: 100%;
+      height: 8px;
+    }
+
     .nav-item:hover .dropdown-menu {
       display: flex;
       opacity: 1;
@@ -389,7 +398,7 @@
 
     /* Luxury Login Button - Styled to match reference design */
     .login-btn {
-      background: var(--accent-gold);
+      background: var(--accent-rose);
       color: #FFFFFF;
       border: none;
       border-radius: 6px;
@@ -408,7 +417,7 @@
     }
 
     .login-btn:hover {
-      background-color: var(--accent-rose);
+      background-color: var(--accent-gold);
       transform: translateY(-2px);
     }
 
@@ -943,12 +952,41 @@
       flex-direction: column;
       align-items: center;
       gap: 20px;
+      position: relative;
     }
 
     .bundle-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px);
       box-shadow: var(--shadow-md);
       border-color: var(--accent-gold);
+    }
+
+    .bundle-card.featured {
+      border: 2px solid var(--accent-gold);
+      transform: scale(1.03) translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .bundle-card.featured:hover {
+      transform: scale(1.03) translateY(-10px);
+    }
+
+    .bundle-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--accent-gold);
+      color: #FFFFFF;
+      font-size: 0.725rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 14px;
+      border-radius: 20px;
+      box-shadow: var(--shadow-sm);
+      white-space: nowrap;
     }
 
     .bundle-icon-circle {
@@ -1004,6 +1042,7 @@
     .flavor-card {
       background-color: var(--bg-card);
       border: 1px solid var(--border-color);
+      border-top: 4px solid var(--accent-rose);
       border-radius: 16px;
       padding: 30px 20px;
       display: flex;
@@ -1014,8 +1053,13 @@
       transition: var(--transition-smooth);
     }
 
+    .flavor-card.chocolate { border-top-color: #5D4037; }
+    .flavor-card.pistachio { border-top-color: #81C784; }
+    .flavor-card.red-velvet { border-top-color: #D32F2F; }
+    .flavor-card.caramel { border-top-color: #FFA000; }
+
     .flavor-card:hover {
-      transform: scale(1.03);
+      transform: scale(1.04);
       border-color: var(--accent-gold);
     }
 
@@ -1032,6 +1076,11 @@
       font-size: 1.1rem;
     }
 
+    .flavor-dot.choco-dot { background-color: #5D4037; color: #FFE0B2; }
+    .flavor-dot.pista-dot { background-color: #E8F5E9; color: #2E7D32; }
+    .flavor-dot.velvet-dot { background-color: #FFCDD2; color: #C62828; }
+    .flavor-dot.caramel-dot { background-color: #FFE082; color: #E65100; }
+
     .flavor-card h3 {
       font-size: 1.1rem;
       font-weight: 700;
@@ -1045,24 +1094,26 @@
 
     /* Section 7: Custom Banner */
     .custom-design-cta {
-      background-color: var(--bg-card);
-      border: 2px dashed var(--accent-gold);
+      background: linear-gradient(135deg, var(--accent-rose), var(--accent-rose-hover));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
       border-radius: 24px;
       padding: 60px 40px;
       text-align: center;
       max-width: 900px;
       margin: 0 auto 80px;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-lg);
     }
 
     .custom-design-cta h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       margin-bottom: 16px;
+      color: #FFFFFF;
     }
 
     .custom-design-cta p {
       font-size: 1.05rem;
-      color: var(--text-secondary);
+      color: rgba(255, 255, 255, 0.9);
       max-width: 600px;
       margin: 0 auto 24px;
       line-height: 1.6;
@@ -1680,6 +1731,9 @@
     <div class="container">
       <h1>Signature Cake Categories</h1>
       <p>Explore our exquisite collections of artisanal, hand-decorated celebration cakes. Baked with organic ingredients, crafted for unforgettable milestones.</p>
+      <div style="margin-top: 24px;">
+        <a href="fresh-bakes.html" class="login-btn" style="width: fit-content; display: inline-flex;">Order Now</a>
+      </div>
     </div>
   </section>
 
@@ -1886,17 +1940,19 @@
     <div class="bundles-grid">
       <!-- Card 1: Birthday Celebration -->
       <div class="bundle-card">
-        <div class="bundle-icon-circle"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--accent-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"></path>
-          <path d="M4 16c.5-.5 1.5-.5 2 0s1.5.5 2 0 1.5.5 2 0 1.5-.5 2 0 1.5.5 2 0 1.5-.5 2 0 1.5-.5 2 0"></path>
-          <path d="M2 21h20"></path>
-          <line x1="7" y1="8" x2="7" y2="11"></line>
-          <line x1="12" y1="8" x2="12" y2="11"></line>
-          <line x1="17" y1="8" x2="17" y2="11"></line>
-          <path d="M7 4 C7 2, 8 2, 8 4" stroke="var(--accent-rose)" stroke-width="2.5"></path>
-          <path d="M12 4 C12 2, 13 2, 13 4" stroke="var(--accent-rose)" stroke-width="2.5"></path>
-          <path d="M17 4 C17 2, 18 2, 18 4" stroke="var(--accent-rose)" stroke-width="2.5"></path>
-        </svg></div>
+        <div class="bundle-icon-circle">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"></path>
+            <path d="M4 16c.5-.5 1.5-.5 2 0s1.5.5 2 0 1.5.5 2 0 1.5-.5 2 0 1.5.5 2 0 1.5-.5 2 0"></path>
+            <path d="M2 21h20"></path>
+            <line x1="7" y1="8" x2="7" y2="11"></line>
+            <line x1="12" y1="8" x2="12" y2="11"></line>
+            <line x1="17" y1="8" x2="17" y2="11"></line>
+            <path d="M7 4c0-1.5.5-2 .5-2s.5.5.5 2" stroke="var(--accent-gold)" stroke-width="2"></path>
+            <path d="M12 4c0-1.5.5-2 .5-2s.5.5.5 2" stroke="var(--accent-gold)" stroke-width="2"></path>
+            <path d="M17 4c0-1.5.5-2 .5-2s.5.5.5 2" stroke="var(--accent-gold)" stroke-width="2"></path>
+          </svg>
+        </div>
         <h3>Grand Birthday Combo</h3>
         <span class="bundle-price">$120</span>
         <ul class="bundle-features">
@@ -1908,9 +1964,17 @@
         <button class="login-btn" onclick="showToast('Grand Birthday Combo Added to Cart ')">Add to Cart</button>
       </div>
 
-      <!-- Card 2: Wedding Shower -->
-      <div class="bundle-card">
-        <div class="bundle-icon-circle"></div>
+      <!-- Card 2: Wedding Shower (Featured Card) -->
+      <div class="bundle-card featured">
+        <div class="bundle-icon-circle">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3h12l-6 6z"></path>
+            <line x1="12" y1="9" x2="12" y2="18"></line>
+            <line x1="8" y1="18" x2="16" y2="18"></line>
+            <path d="M17 11c1.5-1.5 2-3 2-3" stroke="var(--accent-gold)" stroke-width="2"></path>
+            <circle cx="19" cy="5" r="1" fill="var(--accent-gold)"></circle>
+          </svg>
+        </div>
         <h3>Bachelorette Party Bundle</h3>
         <span class="bundle-price">$220</span>
         <ul class="bundle-features">
@@ -1919,12 +1983,16 @@
           <li>24x Rose Water Macarons</li>
           <li>Free Delivery in Paris</li>
         </ul>
-        <button class="login-btn" onclick="showToast('Bachelorette Bundle Added to Cart ')">Add to Cart</button>
+        <button class="login-btn" style="background-color: var(--accent-gold); color: #FFFFFF;" onmouseover="this.style.backgroundColor='var(--accent-rose)';" onmouseout="this.style.backgroundColor='var(--accent-gold)';" onclick="showToast('Bachelorette Bundle Added to Cart ')">Add to Cart</button>
       </div>
 
       <!-- Card 3: Custom Anniversary -->
       <div class="bundle-card">
-        <div class="bundle-icon-circle">â¤ï¸</div>
+        <div class="bundle-icon-circle">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </div>
         <h3>Golden Jubilee Bundle</h3>
         <span class="bundle-price">$180</span>
         <ul class="bundle-features">
@@ -1945,26 +2013,26 @@
     <h2>Signature Cake Flavors</h2>
     <div class="flavors-grid">
       <!-- Flavor 1 -->
-      <div class="flavor-card">
-        <div class="flavor-dot">C</div>
+      <div class="flavor-card chocolate">
+        <div class="flavor-dot choco-dot">C</div>
         <h3>Belgian Chocolate</h3>
         <p>Rich dark chocolate ganache, moist chocolate sponge, cocoa nib crunches.</p>
       </div>
       <!-- Flavor 2 -->
-      <div class="flavor-card">
-        <div class="flavor-dot">V</div>
+      <div class="flavor-card pistachio">
+        <div class="flavor-dot pista-dot">V</div>
         <h3>Pistachio Rose</h3>
         <p>Pistachio cardamon cake, wild rose buttercream, crushed pistachio dust.</p>
       </div>
       <!-- Flavor 3 -->
-      <div class="flavor-card">
-        <div class="flavor-dot">R</div>
+      <div class="flavor-card red-velvet">
+        <div class="flavor-dot velvet-dot">R</div>
         <h3>Classic Red Velvet</h3>
         <p>Deep red sponge, organic cream cheese frosting, sweet vanilla notes.</p>
       </div>
       <!-- Flavor 4 -->
-      <div class="flavor-card">
-        <div class="flavor-dot">S</div>
+      <div class="flavor-card caramel">
+        <div class="flavor-dot caramel-dot">S</div>
         <h3>Salted Caramel</h3>
         <p>Caramel butter cake, homemade fleur de sel sauce, crunchy caramel shards.</p>
       </div>
@@ -1978,7 +2046,7 @@
     <div class="custom-design-cta">
       <h2>Need a Custom Masterpiece?</h2>
       <p>If you have a unique concept, an artistic theme, or specific allergen requirements, our bakers are ready to consult with you. Let's create something extraordinary.</p>
-      <button class="submit-btn" style="margin: 0 auto;" onclick="showToast('Redirecting to Custom Design Enquiry Form... ')">Enquire Custom Design</button>
+      <button class="login-btn" style="margin: 0 auto; background: var(--accent-gold); color: #FFFFFF;" onmouseover="this.style.backgroundColor='#FFFFFF'; this.style.color='var(--accent-rose)';" onmouseout="this.style.backgroundColor='var(--accent-gold)'; this.style.color='#FFFFFF';" onclick="showToast('Redirecting to Custom Design Enquiry Form... ')">Enquire Custom Design</button>
     </div>
   </section>
 

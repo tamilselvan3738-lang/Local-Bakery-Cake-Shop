@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light" dir="ltr">
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -389,7 +389,7 @@
 
     /* Luxury Login Button - Styled to match reference design */
     .login-btn {
-      background: var(--accent-gold);
+      background: var(--accent-rose);
       color: #FFFFFF;
       border: none;
       border-radius: 6px;
@@ -408,7 +408,7 @@
     }
 
     .login-btn:hover {
-      background-color: var(--accent-rose);
+      background-color: var(--accent-gold);
       transform: translateY(-2px);
     }
 
@@ -973,24 +973,26 @@
 
     /* Section 7: Visit CTA */
     .visit-booking-cta {
-      background-color: var(--bg-card);
-      border: 2px dashed var(--accent-gold);
+      background: linear-gradient(135deg, var(--accent-rose), var(--accent-rose-hover));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
       border-radius: 24px;
       padding: 60px 40px;
       text-align: center;
       max-width: 900px;
       margin: 0 auto 80px;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-lg);
     }
 
     .visit-booking-cta h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       margin-bottom: 16px;
+      color: #FFFFFF;
     }
 
     .visit-booking-cta p {
       font-size: 1.05rem;
-      color: var(--text-secondary);
+      color: rgba(255, 255, 255, 0.9);
       max-width: 600px;
       margin: 0 auto 24px;
       line-height: 1.6;
@@ -1616,6 +1618,9 @@
     <div class="container">
       <h1>Our Bakery Heritage</h1>
       <p>A family-owned boutique confectionery baking love, tradition, and organic goodness daily since 1912.</p>
+      <div style="margin-top: 24px;">
+        <a href="contact.html" class="login-btn" style="width: fit-content; display: inline-flex;">Contact Us</a>
+      </div>
     </div>
   </section>
 
@@ -1763,7 +1768,7 @@
     <div class="visit-booking-cta">
       <h2>Visit Our Confectionery Boutique</h2>
       <p>Drop by our boutique tea-room lounge to experience our fresh morning bakes, artisan chocolate pastries, and celebration cakes in person. We'd love to serve you.</p>
-      <button class="submit-btn" style="margin: 0 auto;" onclick="showToast('Redirecting to store location directions... ')">Get Store Directions</button>
+      <button class="login-btn" style="margin: 0 auto; background: var(--accent-gold); color: #FFFFFF;" onmouseover="this.style.backgroundColor='#FFFFFF'; this.style.color='var(--accent-rose)';" onmouseout="this.style.backgroundColor='var(--accent-gold)'; this.style.color='#FFFFFF';" onclick="showToast('Redirecting to store location directions... ')">Get Store Directions</button>
     </div>
   </section>
 
